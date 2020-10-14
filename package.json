@@ -11,6 +11,11 @@
   "hexo": {
     "version": "5.2.0"
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "dependencies": {
     "hexo": "^5.0.0",
     "hexo-deployer-git": "^2.1.0",
