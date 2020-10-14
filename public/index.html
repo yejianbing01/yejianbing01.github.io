@@ -152,6 +152,104 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-gitFlow开发规范" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/14/gitFlow%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/">gitFlow开发规范</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/14/gitFlow%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/" class="archive-article-date">
+  	<time datetime="2020-10-14T11:45:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/B0git9cp7UxjwfD5LYx5HQ">https://mp.weixin.qq.com/s/B0git9cp7UxjwfD5LYx5HQ</a></p>
+<h3 id="分支说明"><a href="#分支说明" class="headerlink" title="分支说明"></a>分支说明</h3><ul>
+<li>master——主分支(受保护),日常构建集成使用，禁止直接提交代码</li>
+<li>hotfix——热修分支,分支以’yy_MM_dd’日期格式命名,用于修复主分支bug，修复后合并至master与develop，并删除</li>
+<li>develop——开发分支(受保护),禁止直接提交代码</li>
+<li>feature——新功能分支</li>
+<li>release——发布定期要上线的功能，创建后进行一轮构建，修复问题，修复后执行’npm run release’更新版本号与changeLog.md，合并至master与develop,并删除</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/421125/1590147659018-127d1630-3229-491a-a498-37f043105f17.png#align=left&display=inline&height=380&margin=%5Bobject%20Object%5D&name=image.png&originHeight=380&originWidth=614&size=43457&status=done&style=none&width=614" alt="image.png"></p>
+<h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><ol>
+<li>完成feature分支后需要按以下流程进行,<ol>
+<li>需要先合并develop至当前feature，并解决可能产生的冲突</li>
+<li>在gitlab上创建merge request,进行代码review</li>
+</ol>
+</li>
+<li>完成hotfix也需要在gitlab上创建merge request,进行代码review</li>
+<li>提交代码时，会有<a target="_blank" rel="noopener" href="https://hzecool.yuque.com/rmobir/va1385/nk2ayu">eslint</a>进行静态代码检查和<a target="_blank" rel="noopener" href="https://hzecool.yuque.com/rmobir/va1385/dpn9i5">commitLint</a>提交规范检查，不符合规范会禁止提交</li>
+</ol>
+<h3 id="在sourcetree中使用git-flow"><a href="#在sourcetree中使用git-flow" class="headerlink" title="在sourcetree中使用git flow"></a>在sourcetree中使用git flow</h3><ol>
+<li>使用git flow初始化仓库<ol>
+<li>mac</li>
+</ol>
+</li>
+</ol>
+<p>仓库-&gt; git flow或hg flow -&gt; 初始化仓库<br>b. windows<br>点击右上角git工作流 初次使用会提示使用git flow初始化此仓库，点击确认即可</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/14/gitFlow%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-jmeter分布式环境搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -575,81 +673,6 @@ plugin      Generate the report
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/14/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/14/hello-world/" class="archive-article-date">
-  	<time datetime="2020-10-14T07:16:44.450Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/14/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -741,6 +764,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
