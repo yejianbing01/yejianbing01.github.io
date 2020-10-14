@@ -152,6 +152,128 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-jmeter分布式环境搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/14/jmeter%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">jmeter分布式环境搭建</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/14/jmeter%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="archive-article-date">
+  	<time datetime="2020-10-14T11:31:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="jmeter分布式环境搭建"><a href="#jmeter分布式环境搭建" class="headerlink" title="jmeter分布式环境搭建"></a>jmeter分布式环境搭建</h1><h1 id="1-环境搭建"><a href="#1-环境搭建" class="headerlink" title="1.环境搭建"></a>1.环境搭建</h1><ul>
+<li><p>安装java环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;profile</span><br><span class="line"></span><br><span class="line">export JAVA_HOME&#x3D;&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8.0_131</span><br><span class="line"></span><br><span class="line">export JRE_HOME&#x3D;$&#123;JAVA_HOME&#125;&#x2F;jre </span><br><span class="line"></span><br><span class="line">export CLASSPATH&#x3D;.:$&#123;JAVA_HOME&#125;&#x2F;lib:$&#123;JRE_HOME&#125;&#x2F;lib</span><br><span class="line"></span><br><span class="line">export  PATH&#x3D;$&#123;JAVA_HOME&#125;&#x2F;bin:$PATH</span><br><span class="line"></span><br><span class="line">source &#x2F;etc&#x2F;profile</span><br><span class="line"></span><br><span class="line">java –version</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://jmeter.apache.org/download_jmeter.cgi">下载安装jmeter</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1.将下载好的jmeter解压到目录&#x2F;usr&#x2F;local或其他目录</span><br><span class="line"></span><br><span class="line">vi &#x2F;etc&#x2F;profile</span><br><span class="line"></span><br><span class="line">export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;apache-jmeter-3.2&#x2F;bin&#x2F;:$PATH</span><br><span class="line"></span><br><span class="line">source &#x2F;etc&#x2F;profile</span><br><span class="line"></span><br><span class="line">jmeter -v</span><br><span class="line"></span><br><span class="line">2.也可不加入环境变量设置软连接</span><br><span class="line"></span><br><span class="line">ln -s &#x2F;usr&#x2F;local&#x2F;jmeter&#x2F;apache-jmeter-5.0&#x2F;bin&#x2F;jmeter.sh &#x2F;usr&#x2F;local&#x2F;bin&#x2F;jmeter</span><br><span class="line"></span><br><span class="line">ln -s &#x2F;usr&#x2F;local&#x2F;jmeter&#x2F;apache-jmeter-5.0&#x2F;bin&#x2F;jmeter-server &#x2F;usr&#x2F;local&#x2F;bin&#x2F;jmeter-server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>jmeter命令行选项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">-t, --testfile &#123;argument&#125;  # 要运行的jmeter脚本</span><br><span class="line"></span><br><span class="line">-j, --jmeterlogfile &#123;argument&#125; # 指定记录jmeter log的文件，默认为jmeter.log</span><br><span class="line"></span><br><span class="line">-l, --logfile &#123;argument&#125; # 记录采样器Log的文件 指定生成测试结果的保存文件， jtl 文件格式</span><br><span class="line"></span><br><span class="line">-n, --nongui  # 以nongui模式运行jmeter</span><br><span class="line"></span><br><span class="line">-s, --server # 运行JMeter server </span><br><span class="line"></span><br><span class="line">-L, --loglevel &#123;argument&#125;&#x3D;&#123;value&#125; # 定义日志等级</span><br><span class="line"></span><br><span class="line">-r, --runremote (non-GUI only)  #启动远程server（在jmeter property中定义好的remote_hosts），公在non-gui模式下此参数才生效</span><br><span class="line"></span><br><span class="line">-R, --remotestart server1,... (non-GUI only) # 启动远程server（如果使用此参数，将会忽略jmeter property中定义的remote_hosts）</span><br><span class="line"></span><br><span class="line">-d, --homedir &#123;argument&#125; # Jmeter运行的主目录</span><br><span class="line"></span><br><span class="line">-X, --remoteexit # 测试结束时，退出（在non-gui模式下）</span><br><span class="line"></span><br><span class="line">-e : 测试结束后，生成测试报告</span><br><span class="line"></span><br><span class="line">-o : 指定测试报告的存放位置 指定的文件及文件夹，必须不存在 ，否则执行会失败，对应上面的命令就是resultReport文件夹必须不存在否则报错</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<p>我们这次使用的是: jmeter -n -t $WORKSPACE/jmeter/ss/pre/dresDetail.jmx -r -l /usr/local/jmeter/ss/dresDetail_result/dresDetail.jtl -e -o /usr/local/jmeter/ss/dresDetail_report</p>
+<ul>
+<li>jmeter 分布式server设置<ul>
+<li>主控机<ul>
+<li>在主控机的jmeter的bin目录找到配置文件 jmeter.properties</li>
+<li>找到里面的remote_hosts部分，修改内容为：remote_hosts=xx，xx代表的是压力机的ip。如果是多个压力机，之间使用[,]分隔</li>
+<li>修改jmeter.properties中的 server.rmi.ssl.disable=true</li>
+</ul>
+</li>
+<li>压力机<ul>
+<li>压力机控制机在同一局域网内,也就是可以互相访问</li>
+<li>压力机也要安装jmeter</li>
+<li>jmeter的bin目录找到配置文件 jmeter.properties中找修改 server_port=1099</li>
+<li>jmeter的bin目录找到配置文件 jmeter.properties中找修改 server.rmi.localport=1099</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>jenkins-jmeter持续集成<ul>
+<li>控制机中添加压力机的ssh公钥，使ssh链接不需要密码```<br>ssh-keygen -t rsa  # 一直回车,在用户家目录下生成 ~/.ssh/id_rsa.pub 公钥</li>
+</ul>
+</li>
+</ul>
+<p>复制压力机 ~/.ssh/id_rsa.pub 中的内容存入控制机authorized_keys文件中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   - 多个压测任务执行的时候开始前先重启jmeter-server&#96;&#96;&#96;</span><br><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">ps -A -o pid,cmd | grep jmeter | grep -v &#39;grep&#39; | awk &#39;&#123;print $1&#125;&#39; | xargs kill -9</span><br><span class="line">cd &#x2F;usr&#x2F;local&#x2F;jmeter&#x2F;apache-jmeter-5.0&#x2F;bin</span><br><span class="line">nohup .&#x2F;jmeter-server &gt; xx.log 2&gt;&amp;1 &amp;</span><br><span class="line">echo &quot;192.168.0.23 setup jmeter finished!&quot;</span><br><span class="line"></span><br><span class="line">ssh root@192.168.0.152 -p 9231 &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1 &lt;&lt; eeooff</span><br><span class="line">ps -A -o pid,cmd | grep jmeter | grep -v &#39;grep&#39; | awk &#39;&#123;print $1&#125;&#39; | xargs kill -9</span><br><span class="line">cd &#x2F;root&#x2F;apache-jmeter-5.0&#x2F;bin</span><br><span class="line">nohup .&#x2F;jmeter-server &gt; xx.log 2&gt;&amp;1 &amp;</span><br><span class="line">exit</span><br><span class="line">eeooff</span><br><span class="line">echo &quot;192.168.0.152 setup jmeter finished!&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>jmeter脚本</p>
+<ul>
+<li><p>BeanShell取样器设置分阶段保存聚合报告</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import org.apache.jmeter.threads.JMeterContextService;</span><br><span class="line"></span><br><span class="line">int num &#x3D; JMeterContextService.getNumberOfThreads();</span><br><span class="line"></span><br><span class="line">System.out.println(&quot;当前线程数&quot;+num);</span><br><span class="line"></span><br><span class="line">if(num&lt;&#x3D;10)&#123;</span><br><span class="line">System.out.println(&quot;线程区间1-10&quot;);</span><br><span class="line">vars.put(&quot;thread&quot;,&quot;线程数1-10&quot;);</span><br><span class="line">&#125;</span><br><span class="line">else if(num&gt;&#x3D;11&amp;&amp;num&lt;&#x3D;20)&#123;</span><br><span class="line">System.out.println(&quot;线程区间11-20&quot;);</span><br><span class="line">vars.put(&quot;thread&quot;,&quot;线程数11-20&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>JSR223预处理器修改随机hashKey</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var jsonParam &#x3D; JSON.parse(vars.get(&quot;jsonParam&quot;));</span><br><span class="line">jsonParam.orders[0].main.hashKey &#x3D; &#39;$&#123;__time(,)&#125;$&#123;__Random(10000,99999,)&#125;&#39;;</span><br><span class="line">vars.put(&quot;jsonParam&quot;,JSON.stringify(jsonParam));</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ul>
+<p>！！！取消勾选【如果可用，缓存编译脚本】<img src="https://cdn.nlark.com/yuque/0/2020/png/467798/1585726547607-7f977cbd-d937-4a86-9782-3a62f07bd6bb.png#align=left&display=inline&height=448&name=image.png&originHeight=896&originWidth=1600&size=439175&status=done&style=none&width=800" alt="image.png"></p>
+<ul>
+<li>BeanShell断言<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">String response &#x3D; &quot;&quot;;</span><br><span class="line">String Str &#x3D; &quot;&#123;\&quot;code\&quot;:0&quot;;</span><br><span class="line">String Str2 &#x3D; &quot;\&quot;isSuccess\&quot;:1&quot;;</span><br><span class="line"></span><br><span class="line">response &#x3D; prev.getResponseDataAsString();</span><br><span class="line">if(response &#x3D;&#x3D; &quot;&quot;)&#123;</span><br><span class="line">    Failure &#x3D; true;</span><br><span class="line">    FailureMessage &#x3D; &quot;系统无响应，获取不到响应数据！&quot;;</span><br><span class="line">    log.info(FailureMessage);</span><br><span class="line">    &#125;</span><br><span class="line">else if(response.contains(Str) &#x3D;&#x3D; false &amp;&amp; response.contains(Str2) &#x3D;&#x3D; false)&#123;</span><br><span class="line">    Failure &#x3D; true;</span><br><span class="line">    String Msg &#x3D; &quot;\n 期望与实际不符！&quot;;</span><br><span class="line">    FailureMessage &#x3D; Msg + &quot;\n&quot; + &quot;期望结果:\n&quot; + Str + Str2 + &quot;响应内容: \n&quot; + response + &quot;\n&quot;;</span><br><span class="line">    log.info(FailureMessage);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/14/jmeter%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-jenkins环境搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
