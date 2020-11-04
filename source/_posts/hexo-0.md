@@ -1,10 +1,10 @@
 ---
-title: Hexo
-date: 2020-11-04 22:37:23
-tags: Hexo
+title: hexo
+date: 2020-11-04 23:32:57
+tags:
 ---
 
-# Hexo 个人博客搭建
+Hexo is a fast, simple and powerful blog framework. You write posts in Markdown (or other markup languages) and Hexo generates static files with a beautiful theme in seconds.
 
 <!-- more -->
 
@@ -39,12 +39,10 @@ hexo g
 ```
 
 ## 将hexo博客部署到github上可以在任何地方访问
-
 1. 登录github新建项目
     * 项目名称必须是：github用户名.github.io
 
 1. 再新建一个hexo分支用于管理文件
-
 
 1. 在本地hexo项目中安装hexo部署插件
 
@@ -71,6 +69,29 @@ hexo g
 1. 将本地代码提交到github项目的hexo分支上，这样在任何一台其他电脑上，直接clone下来修改就行
 
 
+
+## hexo常用命令(https://hexo.io/docs/commands)
+
+```
+# 初始化本地文件夹为网站的根目录
+hexo init
+
+# 新建文章，一般可以简写为 
+hexo new 或 hexo n
+
+# 生成静态文件
+hexo generate 或 hexo g
+
+# 启动本地服务器
+hexo server 或 hexo s
+
+# 部署网站
+hexo deploy 或 hexo d
+
+# 清理缓存文件，是一个比较常用的命令
+hexo clean
+
+```
 
 ## hexo个性化设置
 
