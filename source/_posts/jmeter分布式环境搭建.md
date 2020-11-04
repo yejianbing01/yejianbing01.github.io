@@ -1,10 +1,12 @@
 ---
 title: jmeter分布式环境搭建
 date: 2020-10-14 19:31:39
-tags:
+tags: jmeter
 ---
 
 # jmeter分布式环境搭建
+
+<!-- more -->
 
 # 1.环境搭建
 
@@ -89,9 +91,9 @@ ln -s /usr/local/jmeter/apache-jmeter-5.0/bin/jmeter-server /usr/local/bin/jmete
 ssh-keygen -t rsa  # 一直回车,在用户家目录下生成 ~/.ssh/id_rsa.pub 公钥
 
 复制压力机 ~/.ssh/id_rsa.pub 中的内容存入控制机authorized_keys文件中
-```
+```shell
 
-   - 多个压测任务执行的时候开始前先重启jmeter-server```
+   <!-- - 多个压测任务执行的时候开始前先重启jmeter-server``` -->
 #!/bin/bash
 ps -A -o pid,cmd | grep jmeter | grep -v 'grep' | awk '{print $1}' | xargs kill -9
 cd /usr/local/jmeter/apache-jmeter-5.0/bin
@@ -109,7 +111,7 @@ echo "192.168.0.152 setup jmeter finished!"
 
 - jmeter脚本
    - BeanShell取样器设置分阶段保存聚合报告
-```
+```java
     import org.apache.jmeter.threads.JMeterContextService;
 
     int num = JMeterContextService.getNumberOfThreads();
@@ -127,7 +129,7 @@ echo "192.168.0.152 setup jmeter finished!"
 ```
 
    - JSR223预处理器修改随机hashKey
-```
+```java
 var jsonParam = JSON.parse(vars.get("jsonParam"));
 jsonParam.orders[0].main.hashKey = '${__time(,)}${__Random(10000,99999,)}';
 vars.put("jsonParam",JSON.stringify(jsonParam));
@@ -136,7 +138,7 @@ vars.put("jsonParam",JSON.stringify(jsonParam));
 
 ！！！取消勾选【如果可用，缓存编译脚本】![image.png](https://cdn.nlark.com/yuque/0/2020/png/467798/1585726547607-7f977cbd-d937-4a86-9782-3a62f07bd6bb.png#align=left&display=inline&height=448&name=image.png&originHeight=896&originWidth=1600&size=439175&status=done&style=none&width=800)
    - BeanShell断言
-```
+```java
     String response = "";
     String Str = "{\"code\":0";
     String Str2 = "\"isSuccess\":1";
