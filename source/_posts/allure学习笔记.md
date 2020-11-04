@@ -3,7 +3,8 @@ title: allure学习笔记
 date: 2020-10-14 15:33:57
 tags:
 ---
-# Allure
+
+![alt](/images/allure.png)
 
 <!-- more -->
 

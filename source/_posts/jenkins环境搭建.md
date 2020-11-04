@@ -4,7 +4,7 @@ date: 2020-10-14 16:27:27
 tags:
 ---
 
-# 搭建
+![alt](/images/jenkins.png)
 
 <!-- more -->
 

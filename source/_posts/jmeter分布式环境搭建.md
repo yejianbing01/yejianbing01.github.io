@@ -4,7 +4,7 @@ date: 2020-10-14 19:31:39
 tags: jmeter
 ---
 
-# jmeter分布式环境搭建
+![alt](/images/jmeter.png)
 
 <!-- more -->
 

@@ -4,9 +4,12 @@ date: 2020-10-14 19:45:54
 tags: git
 ---
 
-[https://mp.weixin.qq.com/s/B0git9cp7UxjwfD5LYx5HQ](https://mp.weixin.qq.com/s/B0git9cp7UxjwfD5LYx5HQ)
+![alt](/images/gitFlow.png)
 
 <!-- more -->
+
+
+[https://mp.weixin.qq.com/s/B0git9cp7UxjwfD5LYx5HQ](https://mp.weixin.qq.com/s/B0git9cp7UxjwfD5LYx5HQ)
 
 ### 分支说明
 
