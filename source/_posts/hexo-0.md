@@ -22,7 +22,7 @@ npm install hexo-cli -g
 hexo -v
 
 # 3. 在本地电脑任意位置创建文件夹 blog
-mdkir blog
+mkdir blog
 
 # 4. 初始化hexo博客,进入blog文件夹
 hexo init
@@ -48,7 +48,7 @@ hexo g
 
         npm install --save hexo-deployer-git
 
-1. 修改hexo项目配置文件 _config.yml,在文件最后加入一下内容
+1. 修改hexo项目配置文件 _config.yml,在文件最后加入以下内容
 
         deploy:
             type: git
