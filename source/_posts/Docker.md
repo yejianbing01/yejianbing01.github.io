@@ -80,4 +80,158 @@ tags:
     rm -rf /var/lib/docker
 ```
 
-## 
+## Docker基本命令
+---
+### 帮助命令
+
+```shell
+docker version              # 显示docker的版本信息
+docker info                 # 显示docker的系统信息，包括镜像和容器的数量
+docker 命令 --help          # 帮助命令
+```
+
+### 镜像命令
+
+docker images  查看本机上的docker镜像
+```
+docker images [OPTIONS] [REPOSITORY[:TAG]]
+Options:
+  -a, --all             Show all images 
+  -q, --quiet           Only show image IDs
+```
+
+docker search 在docker仓库中搜索镜像
+```
+docker search [OPTIONS] TERM
+Options:
+  -f, --filter filter   Filter output based 
+```
+
+docker pull 下载镜像
+```
+docker pull [OPTIONS] NAME[:TAG|@DIGEST]
+Options:
+  -a, --all-tags                Download all 
+  -q, --quiet                   Suppress verbose output
+```
+
+docker rmi 删除 镜像
+```
+docker rmi [OPTIONS] IMAGE [IMAGE...]
+Options:
+  -f, --force      Force removal of the image
+
+Exp:
+docker rmi -f $(docker images -aq)  # 删除所有镜像
+```
+
+### 容器命令
+
+docker run 启动容器
+```
+docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+Options:
+  --name="name"                 容器名称，用来区分容器
+  -d, --quiet                   后台方式运行，**启动后如果没有前台应用就会停止容器**
+  -it                           使用交互方式运行，进入容器查看内容
+  -p                            指定容器端口 1122:8080 主机端口号:容器端口号
+
+Exp:
+docker run -it centos /bin/bash
+```
+
+docker ps 列出所有运行的容器
+```
+docker ps [OPTIONS]
+Options:
+  -a, --all             列出所有运行过的容器
+  -n, --last int        列出最近创建的容器
+  -q, --quiet           只显示容器id
+  -s, --size            Display total file sizes
+```
+
+exit 退出容器
+```
+exit                    退出并停止容器
+Ctrl + P + Q            容器不停止退出
+```
+
+docker rm 删除容器
+```
+docker rm [OPTIONS] CONTAINER [CONTAINER...]
+Options:
+  -f, --force     强制删除
+
+Exp:
+docker rm -f $(docker ps -aq)   删除所有容器
+```
+
+启动和停止容器
+```
+docker start 容器id                     启动容器
+docker restart 容器id                   重启容器
+docker stop 容器id                      停止当前运行的容器
+docker kill 容器id                      强制停止当前运行的容器
+```
+
+docker logs
+```
+docker logs [OPTIONS] CONTAINER
+Options:
+  -f, --follow         Follow log output
+  -n, --tail string    Number of lines to show from the end of the logs
+                       (default "all")
+  -t, --timestamps     Show timestamps
+```
+
+docker top 查看容器内部的进程信息
+```
+docker top CONTAINER [ps OPTIONS]
+```
+
+docker inspect 查看容器元数据
+```
+docker inspect [OPTIONS] NAME|ID [NAME|ID...]
+Options:
+  -f, --format string   Format the output using the given Go template
+  -s, --size            Display total file sizes if the type is container
+```
+
+**docker exec** 进入当前正在运行的容器,开启新的终端
+```
+docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
+Options:
+  -d, --detach               Detached mode: run command 
+  -e, --env list             Set environment variables
+  -i, --interactive          Keep STDIN open even if not attached
+  -t, --tty                  Allocate a pseudo-TTY
+
+Exp:
+docker exec -it 9010942b00ff /bin/bash
+```
+
+**docker attach** 进入当前正在运行的容器，进入正在执行的终端
+```
+ docker attach [OPTIONS] CONTAINER
+```
+
+docker cp 容器文件复制
+```
+docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|-
+docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH
+
+```
+
+### 练习： 部署 ES + kibana
+
+```
+# es十分消耗内存
+docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:tag
+
+# 增加内存限制，修改配置文件 -e 环境配置修改
+docker run -d --name elasticsearch  -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node"  -e ES_JAVA_OPTS="-xms64m -Xmx512m" elasticsearch:tag
+
+# docker stats 查看docker机器状态
+```
+
+## docker镜像
