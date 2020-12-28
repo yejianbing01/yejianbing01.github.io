@@ -1,21 +1,6 @@
 # MongoDB
 
-## 业务应用场景（解决三高问题）
-
-一 解决三高问题
-1. 对数据库高并发读写
-2. 对海量数据的高效率存储和访问的需求
-3. 对数据库的高可扩展性和高可用性的需求
-
-二 具体应用场景
-1. 社交场景
-2. 游戏场景
-3. 物流场景
-4. 物联网场景
-5. 视频直播
-
-三 文档型数据库(和mysql对应关系)
-
+## 文档型数据库(和mysql对应关系)
 SQL术语|MongoDB术语/概念|解释/说明
 ---|---|---
 database|database|数据库
@@ -27,10 +12,12 @@ table joins| | 表链接,MongoDB不支持
 ||嵌入文档|MongoDB通过嵌入式文档来替代多表链接
 primary key|primary key | 主键,MongoDB自动将_id字段设置为主键
 
+<!-- more -->
+
 ## 安装配置
 1. 配置数据库目录 mongod --dbpath=../data/db
 2. 配置环境变量(mac) .bash_profile 中添加 export PATH=${PATH}:/usr/local/MongoDB/bin  source .bash_profile 立即生效
-3.配置相关信息
+3. 配置相关信息
 
 ## 常用命令
 命令|解释

@@ -4,15 +4,7 @@ date: 2020-12-27 15:33:57
 tags:
 ---
 
-
-<!-- more -->
-
 ## Docker基本组成
-
----
-
-![alt](/images/docker架构.png)
-
 - 仓库(repository):
 
     用于存放镜像，分为公有仓库和私有仓库。例如DockerHub
@@ -25,12 +17,11 @@ tags:
 
     通过镜像创建得到，可以部署应用。容器中包含了linux系统基本文件，和需要的应用
 
+<!-- more -->
 
+![alt](/images/docker架构.png)
 ## Docker安装
----
-
 > 基于CentOS7安装, [docker官方文档](https://docs.docker.com/engine/install/centos/)
-
 ```shell
 # 1. 卸载旧的版本
     yum remove docker \
