@@ -235,3 +235,82 @@ docker run -d --name elasticsearch  -p 9200:9200 -p 9300:9300 -e "discovery.type
 ```
 
 ## docker镜像
+---
+
+### commit镜像
+```
+docker commit 提交容器成为一个新的版本
+
+# 命令和git原理类似
+docker  commit -m="提交的描述信息" -a="作者" 容器id 目标镜像名:[TAG]
+```
+
+## 容器数据卷
+---
+将容器内的文件，挂载到宿主机上，实现容器的持久化和同步操作，容器间也可以数据共享
+
+### 使用数据卷
+> 方法一：直接使用命令挂载 -v
+```
+docker run -it -v 主机目录:容器目录
+
+# 容器停止后主机修改了挂载目录的数据，容器内的数据也会同步。
+```
+
+### 练习：安装MySQL
+```
+docker pull mysql:5.7
+
+docker run -d -p 3306:3306 -v E:\docker\mysq\confl:/etc/mysql/conf.d -v E:\docker\mysql\data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql:5.7
+
+# -v 目录挂载 主机目录:容器目录
+# -e 环境配置 mysql root用户密码
+```
+
+### 具名挂载和匿名挂载
+- 匿名挂载
+    ```
+    -v 容器内路径
+    docker run -d -P --name nginx01 -v /etc/nginx nginx
+
+    # 查看所有的volume情况
+    docker volume
+
+    docker volume COMMAND
+    Commands:
+    create      Create a volume
+    inspect     Display detailed information on one or more volumes
+    ls          List volumes
+    prune       Remove all unused local volumes
+    rm          Remove one or more volumes
+    ```
+
+- 具名挂载
+    ```
+     -v 卷名:容器内路径
+    ```
+
+- 拓展
+    ```
+    docker run -d -P --name nginx01 -v test-nginx:/etc/nginx:ro nginx
+
+    docker run -d -P --name nginx01 -v test-nginx:/etc/nginx:ro nginx
+
+    ro    readonly  # 只读
+    rw    readwrite # 可读可写
+    ```
+
+> 方式二：Dockerfile
+
+
+## DockerFile
+---
+
+## Docker 网络
+---
+
+## Docker Compose
+
+## Docker Swarm
+
+## CI/CD 
