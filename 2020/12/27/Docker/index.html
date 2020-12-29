@@ -6,38 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>jenkins环境搭建 | Hexo</title>
+  <title>Docker学习笔记 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="jenkins环境搭建">
-<meta property="og:url" content="http://example.com/2020/10/14/jenkins%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.html">
+  <meta name="description" content="Docker基本组成 仓库(repository):   用于存放镜像，分为公有仓库和私有仓库。例如DockerHub  镜像(images)：   docker镜像就好比是一个模板，可以通过模板来创建容器服务。通过这个镜像可以创建多个容器  容器(container):   通过镜像创建得到，可以部署应用。容器中包含了linux系统基本文件，和需要的应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker学习笔记">
+<meta property="og:url" content="http://example.com/2020/12/27/Docker/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Docker基本组成 仓库(repository):   用于存放镜像，分为公有仓库和私有仓库。例如DockerHub  镜像(images)：   docker镜像就好比是一个模板，可以通过模板来创建容器服务。通过这个镜像可以创建多个容器  容器(container):   通过镜像创建得到，可以部署应用。容器中包含了linux系统基本文件，和需要的应用">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/jenkins.png">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/jpeg/467788/1586258245369-880bf670-1110-483d-8e5e-a5e08871645c.jpeg#align=left&display=inline&height=550&originHeight=550&originWidth=640&size=0&status=done&style=none&width=640">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/jpeg/467788/1586258245369-1ed9df19-960c-42d7-91b2-1b0ac7db9819.jpeg#align=left&display=inline&height=286&originHeight=286&originWidth=640&size=0&status=done&style=none&width=640">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/jpeg/467788/1586258245400-8132ffdc-62cc-49df-9568-51364e5fc123.jpeg#align=left&display=inline&height=457&originHeight=457&originWidth=640&size=0&status=done&style=none&width=640">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/jpeg/467788/1586258245377-ec2c2f16-53a5-43d7-b1a9-68d7e8bd170b.jpeg#align=left&display=inline&height=329&originHeight=329&originWidth=640&size=0&status=done&style=none&width=640">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/jpeg/467788/1586258245399-da8e95db-b72a-47a2-a46e-597007ecfa90.jpeg#align=left&display=inline&height=261&originHeight=261&originWidth=640&size=0&status=done&style=none&width=640">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170046-777b7890-ed1c-464a-a9eb-21dae4ac334a.png#align=left&display=inline&height=175&originHeight=175&originWidth=366&size=0&status=done&style=none&width=366">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170036-cb857c21-66d3-48ad-9176-46af553eee7f.png#align=left&display=inline&height=372&originHeight=372&originWidth=583&size=0&status=done&style=none&width=583">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170053-73ee0041-9212-4bcd-a7b6-b0e62eb9b66b.png#align=left&display=inline&height=489&originHeight=489&originWidth=693&size=0&status=done&style=none&width=693">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170028-d3105681-153d-47c9-914a-5a92f9eed907.png#align=left&display=inline&height=448&originHeight=448&originWidth=693&size=0&status=done&style=none&width=693">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170131-1d1bd675-a954-4414-81dd-9669298fdb9b.png#align=left&display=inline&height=475&originHeight=475&originWidth=693&size=0&status=done&style=none&width=693">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170042-6632243e-01cc-4017-9519-2bd102e48766.png#align=left&display=inline&height=375&originHeight=375&originWidth=693&size=0&status=done&style=none&width=693">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170058-6d044725-8a4f-4ff0-b5fd-4a32c96f2fe7.png#align=left&display=inline&height=218&originHeight=218&originWidth=693&size=0&status=done&style=none&width=693">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170037-54eec896-3353-4187-8824-b5a919ef0b21.png#align=left&display=inline&height=289&originHeight=289&originWidth=693&size=0&status=done&style=none&width=693">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170114-a7f2cbe9-1ef3-4db5-9545-0409dd4f570e.png#align=left&display=inline&height=308&originHeight=308&originWidth=693&size=0&status=done&style=none&width=693">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170059-8100ceb5-3a98-4b8b-a78d-98ad75e8ac66.png#align=left&display=inline&height=488&originHeight=488&originWidth=693&size=0&status=done&style=none&width=693">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170102-9bdeff47-e41b-4483-a763-2ce964bb8b58.png#align=left&display=inline&height=318&originHeight=318&originWidth=454&size=0&status=done&style=none&width=454">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170057-1a89b2cb-16e2-4f00-9478-b6f1c1650b5f.png#align=left&display=inline&height=270&originHeight=270&originWidth=693&size=0&status=done&style=none&width=693">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170167-8324ff25-ec86-40fa-a0c3-f4bfae684945.png#align=left&display=inline&height=200&originHeight=200&originWidth=693&size=0&status=done&style=none&width=693">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170119-c0fbd773-eaf2-4556-a94b-007913000b28.png#align=left&display=inline&height=326&originHeight=326&originWidth=693&size=0&status=done&style=none&width=693">
-<meta property="article:published_time" content="2020-10-14T08:27:27.000Z">
-<meta property="article:modified_time" content="2020-11-04T15:56:40.064Z">
+<meta property="og:image" content="http://example.com/images/docker%E6%9E%B6%E6%9E%84.png">
+<meta property="article:published_time" content="2020-12-27T07:33:57.000Z">
+<meta property="article:modified_time" content="2020-12-29T14:33:33.471Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/jenkins.png">
+<meta name="twitter:image" content="http://example.com/images/docker%E6%9E%B6%E6%9E%84.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -173,85 +156,125 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-jenkins环境搭建" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Docker" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      jenkins环境搭建
+      Docker学习笔记
     </h1>
   
 
         
-        <a href="/2020/10/14/jenkins%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="archive-article-date">
-  	<time datetime="2020-10-14T08:27:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
+        <a href="/2020/12/27/Docker/" class="archive-article-date">
+  	<time datetime="2020-12-27T07:33:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/images/jenkins.png" alt="alt"></p>
+        <h2 id="Docker基本组成"><a href="#Docker基本组成" class="headerlink" title="Docker基本组成"></a>Docker基本组成</h2><ul>
+<li><p>仓库(repository):</p>
+<p>  用于存放镜像，分为公有仓库和私有仓库。例如DockerHub</p>
+</li>
+<li><p>镜像(images)：</p>
+<p>  docker镜像就好比是一个模板，可以通过模板来创建容器服务。通过这个镜像可以创建多个容器</p>
+</li>
+<li><p>容器(container):</p>
+<p>  通过镜像创建得到，可以部署应用。容器中包含了linux系统基本文件，和需要的应用</p>
+</li>
+</ul>
 <a id="more"></a>
 
-<h1 id="1-普通搭建"><a href="#1-普通搭建" class="headerlink" title="1.普通搭建"></a><strong>1.普通搭建</strong></h1><p>一、 获取安装列表<br>yum -y list java*<br>二、 安装JDK环境<br>yum -y install java<br>三、 测试JDK是否安装成功<br>Java -version<br>四、 下载Jenkins和maven<br>查看版本 <a target="_blank" rel="noopener" href="http://pkg.jenkins-ci.org/redhat-stable/">http://pkg.jenkins-ci.org/redhat-stable/</a><br>wget <a target="_blank" rel="noopener" href="http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo</a> -O /etc/yum.repos.d/epel-apache-maven.repo<br>wget <a target="_blank" rel="noopener" href="http://pkg.jenkins-ci.org/redhat-stable/jenkins-2.7.3-1.1.noarch.rpm">http://pkg.jenkins-ci.org/redhat-stable/jenkins-2.7.3-1.1.noarch.rpm</a><br>五、 安装maven<br>yum -y install apache-maven<br>六、 安装Jenkins<br>rpm -ivh jenkins-2.7.3-1.1.noarch.rpm<br>七、 修改启动端口<br>vim /etc/sysconfig/jenkins<br>八、 重启服务<br>service jenkins restart<br>九、 查看jenkins密码并复制<br>vim /var/lib/jenkins/secrets/initialAdminPassword<br>十、 新建凭据<br>新建一个凭据，凭据的作用就是让系统于安装的Jenkins形成信任关系，Jenkins才有权限操作本地的项目。<br><img src="https://cdn.nlark.com/yuque/0/2020/jpeg/467788/1586258245369-880bf670-1110-483d-8e5e-a5e08871645c.jpeg#align=left&display=inline&height=550&originHeight=550&originWidth=640&size=0&status=done&style=none&width=640">图 1<br><img src="https://cdn.nlark.com/yuque/0/2020/jpeg/467788/1586258245369-1ed9df19-960c-42d7-91b2-1b0ac7db9819.jpeg#align=left&display=inline&height=286&originHeight=286&originWidth=640&size=0&status=done&style=none&width=640">图 2<br>十一、 新建任务<br>填写任务名，选择构建一个自由风格的软件项目，选择OK<br><img src="https://cdn.nlark.com/yuque/0/2020/jpeg/467788/1586258245400-8132ffdc-62cc-49df-9568-51364e5fc123.jpeg#align=left&display=inline&height=457&originHeight=457&originWidth=640&size=0&status=done&style=none&width=640">图 3<br>十二、 添加Gitlab公钥<br>填写公钥处可参考第五章，利用其生成的公钥字符串填在此处即可。<br><img src="https://cdn.nlark.com/yuque/0/2020/jpeg/467788/1586258245377-ec2c2f16-53a5-43d7-b1a9-68d7e8bd170b.jpeg#align=left&display=inline&height=329&originHeight=329&originWidth=640&size=0&status=done&style=none&width=640">图4<br><img src="https://cdn.nlark.com/yuque/0/2020/jpeg/467788/1586258245399-da8e95db-b72a-47a2-a46e-597007ecfa90.jpeg#align=left&display=inline&height=261&originHeight=261&originWidth=640&size=0&status=done&style=none&width=640">图 5</p>
-<h1 id="2-基于Docker安装Jenkins环境"><a href="#2-基于Docker安装Jenkins环境" class="headerlink" title="2.基于Docker安装Jenkins环境"></a><strong>2.基于Docker安装Jenkins环境</strong></h1><h1 id=""><a href="#" class="headerlink" title=""></a></h1><p> <br>1.使用docker 安装jenkins</p>
-<table>
-<thead>
-<tr>
-<th>docker run -p 8080:8080 -p 50000:50000 -v jenkins_data:/var/jenkins_home jenkinsci/blueocean</th>
-</tr>
-</thead>
-</table>
-<p>2.访问jenkins地址 8080<br><img src="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170046-777b7890-ed1c-464a-a9eb-21dae4ac334a.png#align=left&display=inline&height=175&originHeight=175&originWidth=366&size=0&status=done&style=none&width=366"><br> <br>注意：第一次启动的时候正在加载jenkins大概会等待3-10分钟。<br>3.解锁jenkins<br><img src="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170036-cb857c21-66d3-48ad-9176-46af553eee7f.png#align=left&display=inline&height=372&originHeight=372&originWidth=583&size=0&status=done&style=none&width=583"><br> <br><img src="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170053-73ee0041-9212-4bcd-a7b6-b0e62eb9b66b.png#align=left&display=inline&height=489&originHeight=489&originWidth=693&size=0&status=done&style=none&width=693"><br> <br>docker exec -it 7f485bd95c3b  /bin/bash 进入jenkins容器<br>cat /var/jenkins_home/secrets/initialAdminPassword<br><img src="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170028-d3105681-153d-47c9-914a-5a92f9eed907.png#align=left&display=inline&height=448&originHeight=448&originWidth=693&size=0&status=done&style=none&width=693"><br>大概需要等待3-10分钟<br>创建新的用户<br><img src="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170131-1d1bd675-a954-4414-81dd-9669298fdb9b.png#align=left&display=inline&height=475&originHeight=475&originWidth=693&size=0&status=done&style=none&width=693"><br> <br><img src="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170042-6632243e-01cc-4017-9519-2bd102e48766.png#align=left&display=inline&height=375&originHeight=375&originWidth=693&size=0&status=done&style=none&width=693">
- 
- 
- 
- </p>
-<h2 id="Jenkins全局工具配置"><a href="#Jenkins全局工具配置" class="headerlink" title="Jenkins全局工具配置"></a><strong>Jenkins全局工具配置</strong></h2><p>进入到jenkins容器中 echo $JAVA_HOME 获取java环境安装地址
- </p>
-<h3 id="JDK环境安装"><a href="#JDK环境安装" class="headerlink" title="JDK环境安装"></a><strong>JDK环境安装</strong></h3><p><img src="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170058-6d044725-8a4f-4ff0-b5fd-4a32c96f2fe7.png#align=left&display=inline&height=218&originHeight=218&originWidth=693&size=0&status=done&style=none&width=693">
- 
- </p>
-<h3 id="Maven环境安装"><a href="#Maven环境安装" class="headerlink" title="Maven环境安装"></a><strong>Maven环境安装</strong></h3><p><img src="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170037-54eec896-3353-4187-8824-b5a919ef0b21.png#align=left&display=inline&height=289&originHeight=289&originWidth=693&size=0&status=done&style=none&width=693">
- 
- </p>
-<h3 id="安装Jenkins对应Maven插件"><a href="#安装Jenkins对应Maven插件" class="headerlink" title="安装Jenkins对应Maven插件"></a><strong>安装Jenkins对应Maven插件</strong></h3><p>找到 “系统管理“ - “安装插件” ，点击 “可选插件”，找到如下maven插件的版本  <br>插件名称 <a target="_blank" rel="noopener" href="https://plugins.jenkins.io/maven-plugin">Maven Integration</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170114-a7f2cbe9-1ef3-4db5-9545-0409dd4f570e.png#align=left&display=inline&height=308&originHeight=308&originWidth=693&size=0&status=done&style=none&width=693"><br><img src="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170059-8100ceb5-3a98-4b8b-a78d-98ad75e8ac66.png#align=left&display=inline&height=488&originHeight=488&originWidth=693&size=0&status=done&style=none&width=693">
- 
- </p>
-<h2 id="Jenkins实现Springboot项目自动部署"><a href="#Jenkins实现Springboot项目自动部署" class="headerlink" title="Jenkins实现Springboot项目自动部署"></a><strong>Jenkins实现Springboot项目自动部署</strong></h2><ol>
-<li>新建一个发布任务</li>
-</ol>
-<p><img src="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170102-9bdeff47-e41b-4483-a763-2ce964bb8b58.png#align=left&display=inline&height=318&originHeight=318&originWidth=454&size=0&status=done&style=none&width=454">
- </p>
-<ol>
-<li>配置任务git账号密码</li>
-</ol>
-<p><img src="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170057-1a89b2cb-16e2-4f00-9478-b6f1c1650b5f.png#align=left&display=inline&height=270&originHeight=270&originWidth=693&size=0&status=done&style=none&width=693"><br> <br> <br>   3.项目打包<br><img src="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170167-8324ff25-ec86-40fa-a0c3-f4bfae684945.png#align=left&display=inline&height=200&originHeight=200&originWidth=693&size=0&status=done&style=none&width=693"><br> <br> <br>   clean install</p>
-<ol>
-<li>点击立即构建</li>
-</ol>
-<p><img src="https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170119-c0fbd773-eaf2-4556-a94b-007913000b28.png#align=left&display=inline&height=326&originHeight=326&originWidth=693&size=0&status=done&style=none&width=693"><br> <br>第一次构建可能耗时比较长，因为需要下载一些相关依赖jar包
- </p>
-<h2 id="Jenkins启动成功之后执行shll脚本"><a href="#Jenkins启动成功之后执行shll脚本" class="headerlink" title="**Jenkins启动成功之后执行shll脚本"></a>**Jenkins启动成功之后执行shll脚本</h2><p>| #!/bin/bash<br>#服务名称<br>SERVER_NAME=springboot</p>
-<h1 id="源jar路径-mvn打包完成之后，target目录下的jar包名称，也可选择成为war包，war包可移动到Tomcat的webapps目录下运行，这里使用jar包，用java-jar-命令执行"><a href="#源jar路径-mvn打包完成之后，target目录下的jar包名称，也可选择成为war包，war包可移动到Tomcat的webapps目录下运行，这里使用jar包，用java-jar-命令执行" class="headerlink" title="源jar路径,mvn打包完成之后，target目录下的jar包名称，也可选择成为war包，war包可移动到Tomcat的webapps目录下运行，这里使用jar包，用java -jar 命令执行  "></a>源jar路径,mvn打包完成之后，target目录下的jar包名称，也可选择成为war包，war包可移动到Tomcat的webapps目录下运行，这里使用jar包，用java -jar 命令执行  </h1><p>JAR_NAME=springboot-0.0.1-SNAPSHOT</p>
-<h1 id="源jar路径"><a href="#源jar路径" class="headerlink" title="源jar路径  "></a>源jar路径  </h1><p>#/usr/local/jenkins_home/workspace—&gt;jenkins 工作目录<br>#demo 项目目录<br>#target 打包生成jar包的目录<br>JAR_PATH=/var/jenkins_home/workspace/springboot/target</p>
-<h1 id="打包完成之后，把jar包移动到运行jar包的目录—-gt-work-daemon，work-daemon这个目录需要自己提前创建"><a href="#打包完成之后，把jar包移动到运行jar包的目录—-gt-work-daemon，work-daemon这个目录需要自己提前创建" class="headerlink" title="打包完成之后，把jar包移动到运行jar包的目录—&gt;work_daemon，work_daemon这个目录需要自己提前创建"></a>打包完成之后，把jar包移动到运行jar包的目录—&gt;work_daemon，work_daemon这个目录需要自己提前创建</h1><p>JAR_WORK_PATH=/var/jenkins_home/workspace/springboot/target<br> <br>echo “查询进程id–&gt;$SERVER_NAME”<br>PID=<code>ps -ef | grep &quot;$SERVER_NAME&quot; | awk &#39;&#123;print $2&#125;&#39;</code><br>echo “得到进程ID：$PID”<br>echo “结束进程”<br>for id in $PID<br>do<br>    kill -9 $id  <br>    echo “killed $id”  <br>done<br>echo “结束进程完成”<br> <br>#复制jar包到执行目录<br>echo “复制jar包到执行目录:cp $JAR_PATH/$JAR_NAME.jar $JAR_WORK_PATH”<br>cp $JAR_PATH/$JAR_NAME.jar $JAR_WORK_PATH<br>echo “复制jar包完成”<br>cd $JAR_WORK_PATH<br>#修改文件权限<br>chmod 755 $JAR_NAME.jar<br> <br>Nohub  java -jar $JAR_NAME.jar |<br>| — |</p>
-<p>加<strong>nohub 指的是后台运行</strong>，或者使用<strong>nohub &amp;</strong></p>
-<h1 id="容器映射8081端口"><a href="#容器映射8081端口" class="headerlink" title="容器映射8081端口"></a><strong>容器映射8081端口</strong></h1><ol>
-<li>重启容器<br>systemctl restart  docker  <br> 2. 清空未运行的容器<br>docker rm $(sudo docker ps -a -q)</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>docker run -p 8080:8080   -p 8081:8081   -p 50000:50000 -v jenkins_data:/var/jenkins_home jenkinsci/blueocean</th>
-</tr>
-</thead>
-</table>
-<p>docker安装需要很多依赖，第一次安装报错信息<br>Error: Package: 3:docker-ce-19.03.8-3.el7.x86_64 (docker-ce-stable)<br>Requires: systemd<br>Error: Package: 3:docker-ce-19.03.8-3.el7.x86_64 (docker-ce-stable)<br>Requires: libsystemd.so.0(LIBSYSTEMD_209)(64bit)<br>Error: Package: 3:docker-ce-19.03.8-3.el7.x86_64 (docker-ce-stable)<br>Requires: libseccomp.so.2()(64bit)<br>Error: Package: 3:docker-ce-19.03.8-3.el7.x86_64 (docker-ce-stable)<br>Requires: container-selinux &gt;= 2:2.74<br>Error: Package: 3:docker-ce-19.03.8-3.el7.x86_64 (docker-ce-stable)<br>Requires: libseccomp &gt;= 2.3<br>Error: Package: containerd.io-1.2.13-3.1.el7.x86_64 (docker-ce-stable)<br>Requires: systemd<br>Error: Package: 3:docker-ce-19.03.8-3.el7.x86_64 (docker-ce-stable)<br>Requires: libsystemd.so.0()(64bit)<br>Error: Package: containerd.io-1.2.13-3.1.el7.x86_64 (docker-ce-stable)<br>Requires: container-selinux &gt;= 2:2.74<br>You could try using –skip-broken to work around the problem<br>You could try running: rpm -Va –nofiles –nodigest</p>
+<p><img src="/images/docker%E6%9E%B6%E6%9E%84.png" alt="alt"></p>
+<h2 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h2><blockquote>
+<p>基于CentOS7安装, <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/centos/">docker官方文档</a></p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 1. 卸载旧的版本</span></span><br><span class="line">    yum remove docker \</span><br><span class="line">                docker-client \</span><br><span class="line">                docker-client-latest \</span><br><span class="line">                docker-common \</span><br><span class="line">                docker-latest \</span><br><span class="line">                docker-latest-logrotate \</span><br><span class="line">                docker-logrotate \</span><br><span class="line">                docker-engine</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 2. 需要的安装包</span></span><br><span class="line">    yum install -y yum-utils</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 3. 设置镜像仓库</span></span><br><span class="line">    yum-config-manager \</span><br><span class="line">        --add-repo \</span><br><span class="line">        https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 4. 更新yum软件包索引</span></span><br><span class="line">    yum makecache fast</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 5. 安装docker(docker-ce社区版)</span></span><br><span class="line">    yum install docker-ce docker-ce-cli containerd.io -y</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 6. 检查安装结果</span></span><br><span class="line">    docker version</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 7. 启动docker</span></span><br><span class="line">    systemctl start docker</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 8. docker更换国内镜像源</span></span><br><span class="line">    vi /etc/docker/daemon.json</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;registry-mirrors&quot;: [&quot;https://2l5j7ihl.mirror.aliyuncs.com&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    systemctl daemon-reload</span><br><span class="line">    systemctl restart docker</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 8. 运行hello-world测试</span></span><br><span class="line">    docker run hello-world</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 9. 卸载docker </span></span><br><span class="line">    yum remove docker-ce docker-ce-cli containerd.io</span><br><span class="line"></span><br><span class="line">    rm -rf /var/lib/docker</span><br></pre></td></tr></table></figure>
 
+<h2 id="Docker基本命令"><a href="#Docker基本命令" class="headerlink" title="Docker基本命令"></a>Docker基本命令</h2><hr>
+<h3 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker version              # 显示docker的版本信息</span><br><span class="line">docker info                 # 显示docker的系统信息，包括镜像和容器的数量</span><br><span class="line">docker 命令 --help          # 帮助命令</span><br></pre></td></tr></table></figure>
+
+<h3 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h3><p>docker images  查看本机上的docker镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker images [OPTIONS] [REPOSITORY[:TAG]]</span><br><span class="line">Options:</span><br><span class="line">  -a, --all             Show all images </span><br><span class="line">  -q, --quiet           Only show image IDs</span><br></pre></td></tr></table></figure>
+
+<p>docker search 在docker仓库中搜索镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker search [OPTIONS] TERM</span><br><span class="line">Options:</span><br><span class="line">  -f, --filter filter   Filter output based </span><br></pre></td></tr></table></figure>
+
+<p>docker pull 下载镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker pull [OPTIONS] NAME[:TAG|@DIGEST]</span><br><span class="line">Options:</span><br><span class="line">  -a, --all-tags                Download all </span><br><span class="line">  -q, --quiet                   Suppress verbose output</span><br></pre></td></tr></table></figure>
+
+<p>docker rmi 删除 镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker rmi [OPTIONS] IMAGE [IMAGE...]</span><br><span class="line">Options:</span><br><span class="line">  -f, --force      Force removal of the image</span><br><span class="line"></span><br><span class="line">Exp:</span><br><span class="line">docker rmi -f $(docker images -aq)  # 删除所有镜像</span><br></pre></td></tr></table></figure>
+
+<h3 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h3><p>docker run 启动容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</span><br><span class="line">Options:</span><br><span class="line">  --name&#x3D;&quot;name&quot;                 容器名称，用来区分容器</span><br><span class="line">  -d, --quiet                   后台方式运行，**启动后如果没有前台应用就会停止容器**</span><br><span class="line">  -it                           使用交互方式运行，进入容器查看内容</span><br><span class="line">  -p                            指定容器端口 1122:8080 主机端口号:容器端口号</span><br><span class="line"></span><br><span class="line">Exp:</span><br><span class="line">docker run -it centos &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
+
+<p>docker ps 列出所有运行的容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker ps [OPTIONS]</span><br><span class="line">Options:</span><br><span class="line">  -a, --all             列出所有运行过的容器</span><br><span class="line">  -n, --last int        列出最近创建的容器</span><br><span class="line">  -q, --quiet           只显示容器id</span><br><span class="line">  -s, --size            Display total file sizes</span><br></pre></td></tr></table></figure>
+
+<p>exit 退出容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">exit                    退出并停止容器</span><br><span class="line">Ctrl + P + Q            容器不停止退出</span><br></pre></td></tr></table></figure>
+
+<p>docker rm 删除容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker rm [OPTIONS] CONTAINER [CONTAINER...]</span><br><span class="line">Options:</span><br><span class="line">  -f, --force     强制删除</span><br><span class="line"></span><br><span class="line">Exp:</span><br><span class="line">docker rm -f $(docker ps -aq)   删除所有容器</span><br></pre></td></tr></table></figure>
+
+<p>启动和停止容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker start 容器id                     启动容器</span><br><span class="line">docker restart 容器id                   重启容器</span><br><span class="line">docker stop 容器id                      停止当前运行的容器</span><br><span class="line">docker kill 容器id                      强制停止当前运行的容器</span><br></pre></td></tr></table></figure>
+
+<p>docker logs</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker logs [OPTIONS] CONTAINER</span><br><span class="line">Options:</span><br><span class="line">  -f, --follow         Follow log output</span><br><span class="line">  -n, --tail string    Number of lines to show from the end of the logs</span><br><span class="line">                       (default &quot;all&quot;)</span><br><span class="line">  -t, --timestamps     Show timestamps</span><br></pre></td></tr></table></figure>
+
+<p>docker top 查看容器内部的进程信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker top CONTAINER [ps OPTIONS]</span><br></pre></td></tr></table></figure>
+
+<p>docker inspect 查看容器元数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker inspect [OPTIONS] NAME|ID [NAME|ID...]</span><br><span class="line">Options:</span><br><span class="line">  -f, --format string   Format the output using the given Go template</span><br><span class="line">  -s, --size            Display total file sizes if the type is container</span><br></pre></td></tr></table></figure>
+
+<p><strong>docker exec</strong> 进入当前正在运行的容器,开启新的终端</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker exec [OPTIONS] CONTAINER COMMAND [ARG...]</span><br><span class="line">Options:</span><br><span class="line">  -d, --detach               Detached mode: run command </span><br><span class="line">  -e, --env list             Set environment variables</span><br><span class="line">  -i, --interactive          Keep STDIN open even if not attached</span><br><span class="line">  -t, --tty                  Allocate a pseudo-TTY</span><br><span class="line"></span><br><span class="line">Exp:</span><br><span class="line">docker exec -it 9010942b00ff &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
+
+<p><strong>docker attach</strong> 进入当前正在运行的容器，进入正在执行的终端</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker attach [OPTIONS] CONTAINER</span><br></pre></td></tr></table></figure>
+
+<p>docker cp 容器文件复制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|-</span><br><span class="line">docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="练习：-部署-ES-kibana"><a href="#练习：-部署-ES-kibana" class="headerlink" title="练习： 部署 ES + kibana"></a>练习： 部署 ES + kibana</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># es十分消耗内存</span><br><span class="line">docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e &quot;discovery.type&#x3D;single-node&quot; elasticsearch:tag</span><br><span class="line"></span><br><span class="line"># 增加内存限制，修改配置文件 -e 环境配置修改</span><br><span class="line">docker run -d --name elasticsearch  -p 9200:9200 -p 9300:9300 -e &quot;discovery.type&#x3D;single-node&quot;  -e ES_JAVA_OPTS&#x3D;&quot;-xms64m -Xmx512m&quot; elasticsearch:tag</span><br><span class="line"></span><br><span class="line"># docker stats 查看docker机器状态</span><br></pre></td></tr></table></figure>
+
+<h2 id="docker镜像"><a href="#docker镜像" class="headerlink" title="docker镜像"></a>docker镜像</h2><hr>
+<h3 id="commit镜像"><a href="#commit镜像" class="headerlink" title="commit镜像"></a>commit镜像</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker commit 提交容器成为一个新的版本</span><br><span class="line"></span><br><span class="line"># 命令和git原理类似</span><br><span class="line">docker  commit -m&#x3D;&quot;提交的描述信息&quot; -a&#x3D;&quot;作者&quot; 容器id 目标镜像名:[TAG]</span><br></pre></td></tr></table></figure>
+
+<h2 id="容器数据卷"><a href="#容器数据卷" class="headerlink" title="容器数据卷"></a>容器数据卷</h2><hr>
+<p>将容器内的文件，挂载到宿主机上，实现容器的持久化和同步操作，容器间也可以数据共享</p>
+<h3 id="使用数据卷"><a href="#使用数据卷" class="headerlink" title="使用数据卷"></a>使用数据卷</h3><blockquote>
+<p>方法一：直接使用命令挂载 -v</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -v 主机目录:容器目录</span><br><span class="line"></span><br><span class="line"># 容器停止后主机修改了挂载目录的数据，容器内的数据也会同步。</span><br></pre></td></tr></table></figure>
+
+<h3 id="练习：安装MySQL"><a href="#练习：安装MySQL" class="headerlink" title="练习：安装MySQL"></a>练习：安装MySQL</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql:5.7</span><br><span class="line"></span><br><span class="line">docker run -d -p 3306:3306 -v E:\docker\mysq\confl:&#x2F;etc&#x2F;mysql&#x2F;conf.d -v E:\docker\mysql\data:&#x2F;var&#x2F;lib&#x2F;mysql -e MYSQL_ROOT_PASSWORD&#x3D;123456 --name mysql01 mysql:5.7</span><br><span class="line"></span><br><span class="line"># -v 目录挂载 主机目录:容器目录</span><br><span class="line"># -e 环境配置 mysql root用户密码</span><br></pre></td></tr></table></figure>
+
+<h3 id="具名挂载和匿名挂载"><a href="#具名挂载和匿名挂载" class="headerlink" title="具名挂载和匿名挂载"></a>具名挂载和匿名挂载</h3><ul>
+<li><p>匿名挂载</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-v 容器内路径</span><br><span class="line">docker run -d -P --name nginx01 -v &#x2F;etc&#x2F;nginx nginx</span><br><span class="line"></span><br><span class="line"># 查看所有的volume情况</span><br><span class="line">docker volume</span><br><span class="line"></span><br><span class="line">docker volume COMMAND</span><br><span class="line">Commands:</span><br><span class="line">create      Create a volume</span><br><span class="line">inspect     Display detailed information on one or more volumes</span><br><span class="line">ls          List volumes</span><br><span class="line">prune       Remove all unused local volumes</span><br><span class="line">rm          Remove one or more volumes</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>具名挂载</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-v 卷名:容器内路径</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>拓展</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P --name nginx01 -v test-nginx:&#x2F;etc&#x2F;nginx:ro nginx</span><br><span class="line"></span><br><span class="line">docker run -d -P --name nginx01 -v test-nginx:&#x2F;etc&#x2F;nginx:ro nginx</span><br><span class="line"></span><br><span class="line">ro    readonly  # 只读</span><br><span class="line">rw    readwrite # 可读可写</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>方式二：Dockerfile</p>
+</blockquote>
+<h2 id="DockerFile"><a href="#DockerFile" class="headerlink" title="DockerFile"></a>DockerFile</h2><hr>
+<h2 id="Docker-网络"><a href="#Docker-网络" class="headerlink" title="Docker 网络"></a>Docker 网络</h2><hr>
+<h2 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker Compose"></a>Docker Compose</h2><h2 id="Docker-Swarm"><a href="#Docker-Swarm" class="headerlink" title="Docker Swarm"></a>Docker Swarm</h2><h2 id="CI-CD"><a href="#CI-CD" class="headerlink" title="CI/CD"></a>CI/CD</h2>
       
 
       
@@ -330,7 +353,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/14/jenkins%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/12/27/Docker/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -344,18 +367,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/10/14/jmeter%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/12/29/MongoDB/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          jmeter分布式环境搭建
+          (no title)
         
       </div>
     </a>
   
   
-    <a href="/2020/10/14/allure%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">allure学习笔记</div>
+    <a href="/2020/12/13/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">多线程笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -382,7 +405,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%99%AE%E9%80%9A%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">1.普通搭建</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%9F%BA%E4%BA%8EDocker%E5%AE%89%E8%A3%85Jenkins%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">2.基于Docker安装Jenkins环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Jenkins%E5%85%A8%E5%B1%80%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE"><span class="toc-number">3.1.</span> <span class="toc-text">Jenkins全局工具配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="toc-number">3.1.1.</span> <span class="toc-text">JDK环境安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="toc-number">3.1.2.</span> <span class="toc-text">Maven环境安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Jenkins%E5%AF%B9%E5%BA%94Maven%E6%8F%92%E4%BB%B6"><span class="toc-number">3.1.3.</span> <span class="toc-text">安装Jenkins对应Maven插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Jenkins%E5%AE%9E%E7%8E%B0Springboot%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2"><span class="toc-number">3.2.</span> <span class="toc-text">Jenkins实现Springboot项目自动部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Jenkins%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F%E4%B9%8B%E5%90%8E%E6%89%A7%E8%A1%8Cshll%E8%84%9A%E6%9C%AC"><span class="toc-number">3.3.</span> <span class="toc-text">**Jenkins启动成功之后执行shll脚本</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BA%90jar%E8%B7%AF%E5%BE%84-mvn%E6%89%93%E5%8C%85%E5%AE%8C%E6%88%90%E4%B9%8B%E5%90%8E%EF%BC%8Ctarget%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84jar%E5%8C%85%E5%90%8D%E7%A7%B0%EF%BC%8C%E4%B9%9F%E5%8F%AF%E9%80%89%E6%8B%A9%E6%88%90%E4%B8%BAwar%E5%8C%85%EF%BC%8Cwar%E5%8C%85%E5%8F%AF%E7%A7%BB%E5%8A%A8%E5%88%B0Tomcat%E7%9A%84webapps%E7%9B%AE%E5%BD%95%E4%B8%8B%E8%BF%90%E8%A1%8C%EF%BC%8C%E8%BF%99%E9%87%8C%E4%BD%BF%E7%94%A8jar%E5%8C%85%EF%BC%8C%E7%94%A8java-jar-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-number">4.</span> <span class="toc-text">源jar路径,mvn打包完成之后，target目录下的jar包名称，也可选择成为war包，war包可移动到Tomcat的webapps目录下运行，这里使用jar包，用java -jar 命令执行  </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BA%90jar%E8%B7%AF%E5%BE%84"><span class="toc-number">5.</span> <span class="toc-text">源jar路径  </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E5%AE%8C%E6%88%90%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%8A%8Ajar%E5%8C%85%E7%A7%BB%E5%8A%A8%E5%88%B0%E8%BF%90%E8%A1%8Cjar%E5%8C%85%E7%9A%84%E7%9B%AE%E5%BD%95%E2%80%94-gt-work-daemon%EF%BC%8Cwork-daemon%E8%BF%99%E4%B8%AA%E7%9B%AE%E5%BD%95%E9%9C%80%E8%A6%81%E8%87%AA%E5%B7%B1%E6%8F%90%E5%89%8D%E5%88%9B%E5%BB%BA"><span class="toc-number">6.</span> <span class="toc-text">打包完成之后，把jar包移动到运行jar包的目录—&gt;work_daemon，work_daemon这个目录需要自己提前创建</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E6%98%A0%E5%B0%848081%E7%AB%AF%E5%8F%A3"><span class="toc-number">7.</span> <span class="toc-text">容器映射8081端口</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90"><span class="toc-number">1.</span> <span class="toc-text">Docker基本组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">Docker安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">Docker基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%AE%E5%8A%A9%E5%91%BD%E4%BB%A4"><span class="toc-number">3.1.</span> <span class="toc-text">帮助命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E5%91%BD%E4%BB%A4"><span class="toc-number">3.2.</span> <span class="toc-text">镜像命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">3.3.</span> <span class="toc-text">容器命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%EF%BC%9A-%E9%83%A8%E7%BD%B2-ES-kibana"><span class="toc-number">3.4.</span> <span class="toc-text">练习： 部署 ES + kibana</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker%E9%95%9C%E5%83%8F"><span class="toc-number">4.</span> <span class="toc-text">docker镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#commit%E9%95%9C%E5%83%8F"><span class="toc-number">4.1.</span> <span class="toc-text">commit镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="toc-number">5.</span> <span class="toc-text">容器数据卷</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="toc-number">5.1.</span> <span class="toc-text">使用数据卷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%EF%BC%9A%E5%AE%89%E8%A3%85MySQL"><span class="toc-number">5.2.</span> <span class="toc-text">练习：安装MySQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E5%90%8D%E6%8C%82%E8%BD%BD%E5%92%8C%E5%8C%BF%E5%90%8D%E6%8C%82%E8%BD%BD"><span class="toc-number">5.3.</span> <span class="toc-text">具名挂载和匿名挂载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DockerFile"><span class="toc-number">6.</span> <span class="toc-text">DockerFile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%BD%91%E7%BB%9C"><span class="toc-number">7.</span> <span class="toc-text">Docker 网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-Compose"><span class="toc-number">8.</span> <span class="toc-text">Docker Compose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-Swarm"><span class="toc-number">9.</span> <span class="toc-text">Docker Swarm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CI-CD"><span class="toc-number">10.</span> <span class="toc-text">CI&#x2F;CD</span></a></li></ol>
                     </div>
                 </span>
             </div>
