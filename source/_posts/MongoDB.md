@@ -19,6 +19,28 @@ primary key|primary key | 主键,MongoDB自动将_id字段设置为主键
 2. 配置环境变量(mac) .bash_profile 中添加 export PATH=${PATH}:/usr/local/MongoDB/bin  source .bash_profile 立即生效
 3. 配置相关信息
 
+## 数据类型
+类型|类型值
+---|---
+Double|1
+String|2
+Object|3
+Array|4
+Binary data|5
+Object id|7
+Date|8
+Null|9
+Regular expression|10
+JavaScript code|11
+Symbol|13
+JavaScript code with scope|14
+32-bit integer|16
+Timestamp|6
+64-bit integer|17
+Timestamp|18
+Min key|255
+Max key|127
+
 ## 常用命令
 命令|解释
 ---|---

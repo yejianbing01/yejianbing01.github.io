@@ -131,6 +131,19 @@ Exp:
 docker run -it centos /bin/bash
 ```
 
+docker rename 容器重命名
+```
+docker rename CONTAINER NEW_NAME
+```
+
+docker update 更新容器
+```
+docker update [OPTIONS] CONTAINER [CONTAINER...]
+Options:
+  -m, --memory bytes               Memory limit
+      --restart string             Restart policy to apply when a container exits
+```
+
 docker ps 列出所有运行的容器
 ```
 docker ps [OPTIONS]
