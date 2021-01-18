@@ -271,6 +271,17 @@ docker run -d -p 3306:3306 -v E:\docker\mysq\confl:/etc/mysql/conf.d -v E:\docke
 # -e 环境配置 mysql root用户密码
 ```
 
+### 练习：安装mongoDB
+```
+docker pull mongo
+
+docker run --name mongodb -p 27017:27017 -v mongo:/data/db -d mongo --auth
+
+# --auth 开启权限认证
+# -v mongo:/data/db 具名挂载
+
+```
+
 ### 具名挂载和匿名挂载
 - 匿名挂载
     ```
