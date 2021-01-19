@@ -131,6 +131,19 @@ Exp:
 docker run -it centos /bin/bash
 ```
 
+docker rename 容器重命名
+```
+docker rename CONTAINER NEW_NAME
+```
+
+docker update 更新容器
+```
+docker update [OPTIONS] CONTAINER [CONTAINER...]
+Options:
+  -m, --memory bytes               Memory limit
+      --restart string             Restart policy to apply when a container exits
+```
+
 docker ps 列出所有运行的容器
 ```
 docker ps [OPTIONS]
@@ -256,6 +269,17 @@ docker run -d -p 3306:3306 -v E:\docker\mysq\confl:/etc/mysql/conf.d -v E:\docke
 
 # -v 目录挂载 主机目录:容器目录
 # -e 环境配置 mysql root用户密码
+```
+
+### 练习：安装mongoDB
+```
+docker pull mongo
+
+docker run --name mongodb -p 27017:27017 -v mongo:/data/db -d mongo --auth
+
+# --auth 开启权限认证
+# -v mongo:/data/db 具名挂载
+
 ```
 
 ### 具名挂载和匿名挂载

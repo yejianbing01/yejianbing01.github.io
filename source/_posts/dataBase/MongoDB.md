@@ -19,7 +19,23 @@ primary key|primary key | 主键,MongoDB自动将_id字段设置为主键
 2. 配置环境变量(mac) .bash_profile 中添加 export PATH=${PATH}:/usr/local/MongoDB/bin  source .bash_profile 立即生效
 3. 配置相关信息
 
+## 数据类型
+类型        |类型值|  类型                        |类型值
+---         |---|    ---                        |---
+Double      | 1 |   Regular expression          | 10
+String      | 2 |   JavaScript code             | 11
+Object      | 3 |   Symbol                      | 13
+Array       | 4 |   JavaScript code with scope  | 14
+Binary data | 5 |   32-bit integer              | 16
+Object id   | 7 |   Timestamp                   | 6
+Date        | 8 |   64-bit integer              | 17
+Null        | 9 |   Timestamp                   | 18
+Min key     | 255|  Max key                     | 127
+
+
 ## 常用命令
+
+### 数据库操作
 命令|解释
 ---|---
 mongo --host=${ip地址}|链接数据库
@@ -29,6 +45,15 @@ db.dropDatabase()| 删除当前数据库
 默认库admin|'root'数据库，要是将一个用户添加到这个库，这个用户自动继承所有数据库权限，一些特定的服务器命令只能从这个数据库运行，比如列出所有的数据库或关闭数据库
 默认库local|这个数据永远不好被复制，可以用来存储限于本地单台服务器的任意集合
 默认库config|当mongo用于分片设置时，config数据库在内部使用，用于保存分片的相关信息
+
+### 用户权限操作
+命令|解释
+---|---
+
+
+### 集合操作
+命令|解释
+---|---
 db|数据库类 可以调用方法，用法类似类似js
 db.createCollection('${集合名称}')|创建集合
 show collections|查看集合
