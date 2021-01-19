@@ -1,3 +1,9 @@
+---
+title: Node.js学习笔记
+date: 2021-01-20 15:33:57
+tags:
+---
+
 # Node.js
 
 ## Node.js 是什么？
@@ -16,6 +22,8 @@ function (exports, require, module, __filename, __dirname) {
     // console.log(arguments.callee.toString())
 }
 ```
+
+<!-- more -->
 
 ## Node.js 中的事件循环机制(EventLoop)
 ```javaScript
