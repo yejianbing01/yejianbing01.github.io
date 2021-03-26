@@ -261,8 +261,8 @@ docker run -it -v 主机目录:容器目录
 # 容器停止后主机修改了挂载目录的数据，容器内的数据也会同步。
 ```
 
-### 练习：安装MySQL
-```
+### 安装MySQL
+```sh
 docker pull mysql:5.7
 
 docker run -d -p 3306:3306 -v E:\docker\mysq\confl:/etc/mysql/conf.d -v E:\docker\mysql\data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql:5.7
@@ -271,8 +271,8 @@ docker run -d -p 3306:3306 -v E:\docker\mysq\confl:/etc/mysql/conf.d -v E:\docke
 # -e 环境配置 mysql root用户密码
 ```
 
-### 练习：安装mongoDB
-```
+### 安装mongoDB
+```sh
 docker pull mongo
 
 docker run --name mongodb -p 27017:27017 -v mongo:/data/db -d mongo --auth
@@ -280,6 +280,13 @@ docker run --name mongodb -p 27017:27017 -v mongo:/data/db -d mongo --auth
 # --auth 开启权限认证
 # -v mongo:/data/db 具名挂载
 
+```
+### 安装jenkins
+```sh
+docker run -it --name jenkins -e TZ=Asia/Shanghai \
+	-p 8080:8080 -p 50000:50000 \
+	-v ~/mnt/jenkins/jenkins_home:/var/jenkins_home \
+	jenkins/jenkins
 ```
 
 ### 具名挂载和匿名挂载
