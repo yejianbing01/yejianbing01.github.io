@@ -29,23 +29,11 @@ vim /etc/sysconfig/jenkins
 service jenkins restart
 9. 查看jenkins密码并复制
 vim /var/lib/jenkins/secrets/initialAdminPassword
-10. 新建凭据
-新建一个凭据，凭据的作用就是让系统于安装的Jenkins形成信任关系，Jenkins才有权限操作本地的项目。
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/467788/1586258245369-880bf670-1110-483d-8e5e-a5e08871645c.jpeg#align=left&display=inline&height=550&originHeight=550&originWidth=640&size=0&status=done&style=none&width=640)图 1
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/467788/1586258245369-1ed9df19-960c-42d7-91b2-1b0ac7db9819.jpeg#align=left&display=inline&height=286&originHeight=286&originWidth=640&size=0&status=done&style=none&width=640)图 2
-十一、 新建任务
-填写任务名，选择构建一个自由风格的软件项目，选择OK
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/467788/1586258245400-8132ffdc-62cc-49df-9568-51364e5fc123.jpeg#align=left&display=inline&height=457&originHeight=457&originWidth=640&size=0&status=done&style=none&width=640)图 3
-十二、 添加Gitlab公钥
-填写公钥处可参考第五章，利用其生成的公钥字符串填在此处即可。
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/467788/1586258245377-ec2c2f16-53a5-43d7-b1a9-68d7e8bd170b.jpeg#align=left&display=inline&height=329&originHeight=329&originWidth=640&size=0&status=done&style=none&width=640)图4
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/467788/1586258245399-da8e95db-b72a-47a2-a46e-597007ecfa90.jpeg#align=left&display=inline&height=261&originHeight=261&originWidth=640&size=0&status=done&style=none&width=640)图 5
 
+# **2. 基于Docker安装Jenkins环境**
 
-# **2.基于Docker安装Jenkins环境**
-# 
- 
-1.使用docker 安装jenkins
+1. 使用docker 安装jenkins
+
 ```sh
 docker run -it --name jenkins -e TZ=Asia/Shanghai \
 	-p 8080:8080 -p 50000:50000 \
@@ -53,88 +41,58 @@ docker run -it --name jenkins -e TZ=Asia/Shanghai \
 	jenkins/jenkins
 ```
 
-# **3.Jenkins全局工具配置**
-进入到jenkins容器中 echo $JAVA_HOME 获取java环境安装地址
- 
-### **JDK环境安装**
-![](https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170058-6d044725-8a4f-4ff0-b5fd-4a32c96f2fe7.png#align=left&display=inline&height=218&originHeight=218&originWidth=693&size=0&status=done&style=none&width=693)
- 
- 
-### **Maven环境安装**
-![](https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170037-54eec896-3353-4187-8824-b5a919ef0b21.png#align=left&display=inline&height=289&originHeight=289&originWidth=693&size=0&status=done&style=none&width=693)
- 
- 
-### **安装Jenkins对应Maven插件**
-找到 “系统管理“ - “安装插件” ，点击 “可选插件”，找到如下maven插件的版本  
-插件名称 [Maven Integration](https://plugins.jenkins.io/maven-plugin)
-![](https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170114-a7f2cbe9-1ef3-4db5-9545-0409dd4f570e.png#align=left&display=inline&height=308&originHeight=308&originWidth=693&size=0&status=done&style=none&width=693)
-![](https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170059-8100ceb5-3a98-4b8b-a78d-98ad75e8ac66.png#align=left&display=inline&height=488&originHeight=488&originWidth=693&size=0&status=done&style=none&width=693)
- 
- 
-# **4.Jenkins实现Springboot项目自动部署**
+# **3.使用tomcat，jenkins.war包安装jenkins**
 
-1. 新建一个发布任务
+1. 下载安装 tomcat
 
-![](https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170102-9bdeff47-e41b-4483-a763-2ce964bb8b58.png#align=left&display=inline&height=318&originHeight=318&originWidth=454&size=0&status=done&style=none&width=454)
- 
+2. 下载 jenkins.war 文件
 
-2. 配置任务git账号密码
+3. 将 jenkins.war 文件复制到 webapps 文件下
 
-![](https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170057-1a89b2cb-16e2-4f00-9478-b6f1c1650b5f.png#align=left&display=inline&height=270&originHeight=270&originWidth=693&size=0&status=done&style=none&width=693)
- 
- 
-3. 项目打包
-![](https://cdn.nlark.com/yuque/0/2020/png/467788/1586258170167-8324ff25-ec86-40fa-a0c3-f4bfae684945.png#align=left&display=inline&height=200&originHeight=200&originWidth=693&size=0&status=done&style=none&width=693)
- 
- 
-clean install 第一次构建可能耗时比较长，因为需要下载一些相关依赖jar包
- 
-## **Jenkins启动成功之后执行shll脚本
-| #!/bin/bash
-#服务名称
-SERVER_NAME=springboot
-# 源jar路径,mvn打包完成之后，target目录下的jar包名称，也可选择成为war包，war包可移动到Tomcat的webapps目录下运行，这里使用jar包，用java -jar 命令执行  
-JAR_NAME=springboot-0.0.1-SNAPSHOT
-# 源jar路径  
-#/usr/local/jenkins_home/workspace--->jenkins 工作目录
-#demo 项目目录
-#target 打包生成jar包的目录
-JAR_PATH=/var/jenkins_home/workspace/springboot/target
-# 打包完成之后，把jar包移动到运行jar包的目录--->work_daemon，work_daemon这个目录需要自己提前创建
-```sh
-JAR_WORK_PATH=/var/jenkins_home/workspace/springboot/target
- 
-echo "查询进程id-->$SERVER_NAME"
-PID=`ps -ef | grep "$SERVER_NAME" | awk '{print $2}'`
-echo "得到进程ID：$PID"
-echo "结束进程"
-for id in $PID
-do
-	kill -9 $id  
-	echo "killed $id"  
-done
-echo "结束进程完成"
-```
+4. 部署war包到Tomcat根目录访问
 
-```sh
-#复制jar包到执行目录
-echo "复制jar包到执行目录:cp $JAR_PATH/$JAR_NAME.jar $JAR_WORK_PATH"
-cp $JAR_PATH/$JAR_NAME.jar $JAR_WORK_PATH
-echo "复制jar包完成"
-cd $JAR_WORK_PATH
-#修改文件权限
-chmod 755 $JAR_NAME.jar
- 
-Nohub  java -jar $JAR_NAME.jar
-```
+   ```sh
+   # docBase 改成 jenkins.war 文件的绝对路径
+   vi tomcat/conf/server.xml;
+   <Context path="" docBase="/usr/local/src/apache-tomcat-7.0.106/webapps/pm" debug="0" privileged="true" reloadable="true"/>
+   ```
 
-加**nohub 指的是后台运行**，或者使用**nohub &**
-# **容器映射8081端口**
-1. 重启容器
-systemctl restart  docker  
-2. 清空未运行的容器
-docker rm $(sudo docker ps -a -q)
+5. Jenkins修改默认目录 /root/.jenkins ( 需要时修改)
 
-	| docker run -p 8080:8080   -p 8081:8081   -p 50000:50000 -v jenkins_data:/var/jenkins_home jenkinsci/blueocean |
-	| --- |
+   ```sh
+   # linux下安装Jenkins（jenkins的war包，tomcat启动）后，默认目录为：/root/.jenkins
+   # 1. 打开tomcat的bin目录，编辑catalina.sh文件。 
+   # 2. 在 OS specific support. $var must be set to either true or false. 上面添加:
+   export JENKINS_HOME="xxxx/xxxx"
+   # 3. 修改linux系统环境变量 profile文件
+   vim /etc/profile
+     # 加入
+     export JENKINS_HOME=/xxx/xx/xx
+   # 4. 立即生效
+   source /etc/profile
+   # 5. 重启tomcat
+   ```
 
+6. jenkins添加全局凭证-ssh拉取git代码
+
+   ```sh
+   cd ~/.ssh
+   # 如果没有文件则，需要新生成ssh秘钥
+   ssh-keygen -t rsa -C “登录gitlab的邮箱”
+   # id_rsa.pub：公钥，复制到gitlab平台配置ssh-key
+   # id_rsa：私钥，复制到jenkins平台配置jenkins凭据
+   ```
+
+
+7. jenkins域名地址配置
+
+   ```sh
+   # 系统管理/系统配置/Jenkins URL
+   ```
+
+# **4. Jenkins插件**
+
+1. 汉化插件：[Localization: Chinese (Simplified)](https://wiki.jenkins-ci.org/display/JENKINS/Localization+zh+cn+Plugin) 
+2. 用户权限插件：Role-based
+3. 测试报告插件：Allure
+   1. 安装完成后需要配置maven下载
