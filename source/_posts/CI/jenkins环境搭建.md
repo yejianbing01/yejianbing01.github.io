@@ -42,23 +42,16 @@ docker run -it --name jenkins -e TZ=Asia/Shanghai \
 ```
 
 # **3.使用tomcat，jenkins.war包安装jenkins**
-
 1. 下载安装 tomcat
-
 2. 下载 jenkins.war 文件
-
 3. 将 jenkins.war 文件复制到 webapps 文件下
-
 4. 部署war包到Tomcat根目录访问
-
    ```sh
    # docBase 改成 jenkins.war 文件的绝对路径
    vi tomcat/conf/server.xml;
    <Context path="" docBase="/usr/local/src/apache-tomcat-7.0.106/webapps/pm" debug="0" privileged="true" reloadable="true"/>
    ```
-
 5. Jenkins修改默认目录 /root/.jenkins ( 需要时修改)
-
    ```sh
    # linux下安装Jenkins（jenkins的war包，tomcat启动）后，默认目录为：/root/.jenkins
    # 1. 打开tomcat的bin目录，编辑catalina.sh文件。 
@@ -72,9 +65,7 @@ docker run -it --name jenkins -e TZ=Asia/Shanghai \
    source /etc/profile
    # 5. 重启tomcat
    ```
-
 6. jenkins添加全局凭证-ssh拉取git代码
-
    ```sh
    cd ~/.ssh
    # 如果没有文件则，需要新生成ssh秘钥
@@ -82,10 +73,7 @@ docker run -it --name jenkins -e TZ=Asia/Shanghai \
    # id_rsa.pub：公钥，复制到gitlab平台配置ssh-key
    # id_rsa：私钥，复制到jenkins平台配置jenkins凭据
    ```
-
-
 7. jenkins域名地址配置
-
    ```sh
    # 系统管理/系统配置/Jenkins URL
    ```
