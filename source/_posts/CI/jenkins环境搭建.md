@@ -83,4 +83,42 @@ docker run -it --name jenkins -e TZ=Asia/Shanghai \
 1. 汉化插件：[Localization: Chinese (Simplified)](https://wiki.jenkins-ci.org/display/JENKINS/Localization+zh+cn+Plugin) 
 2. 用户权限插件：Role-based
 3. 测试报告插件：Allure
-   1. 安装完成后需要配置maven下载
+   - 安装完成后需要配置maven下载
+
+# **5. 环境变量配置**
+
+1. 全局环境变配置
+
+   ```sh
+   # 系统管理/系统配置/全局属性
+   键: NODE_HOME
+   值: /usr/local/node
+   键: PATH
+   值: $NODE_HOME/bin:$PATH
+   ```
+
+2. 单节点环境变量配置
+
+   ```sh
+   # 系统管理/节点管理/设置/节点属性/
+   键: NODE_HOME
+   值: /usr/local/node
+   键: PATH
+   值: $NODE_HOME/bin:$PATH
+   ```
+
+
+# 6. 全局属性
+
+ 1. 工具位置
+
+    ```sh
+    # 系统管理/系统配置/全局属性
+    (Allure Commandline) allure
+    /usr/local/jenkins_home/tools/ru.yandex.qatools.allure.jenkins.tools.AllureCommandlineInstallation/allure
+    ```
+
+    
+
+
+
