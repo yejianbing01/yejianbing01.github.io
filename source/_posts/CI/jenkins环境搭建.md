@@ -118,7 +118,19 @@ docker run -it --name jenkins -e TZ=Asia/Shanghai \
     /usr/local/jenkins_home/tools/ru.yandex.qatools.allure.jenkins.tools.AllureCommandlineInstallation/allure
     ```
 
-    
 
+# 7. 配置gitlab,webhook
 
-
+1. 安装插件
+   - [Generic Webhook Trigger Plugin](https://plugins.jenkins.io/generic-webhook-trigger)
+   - [GitLab Plugin](https://plugins.jenkins.io/gitlab-plugin)
+2. GitLab创建Personal Access Tokens
+	- 个人头像/setting/Access Tokens/Scopes-api
+3. Jenkins配置GitLab信息
+   - 系统管理/系统配置/GitLab
+   - 配置项目仓库url
+   - 添加凭证GitLab API Token
+4. Jenkins工程添加构建触发器
+   - 复制GitLab webhook URL: xxxxxx 
+   - 高级 > 可设置触发分支
+   - 将GitLab webhook URL添加到GitLab WebHook中
