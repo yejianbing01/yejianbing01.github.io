@@ -86,9 +86,7 @@ docker run -it --name jenkins -e TZ=Asia/Shanghai \
    - 安装完成后需要配置maven下载
 
 # **5. 环境变量配置**
-
 1. 全局环境变配置
-
    ```sh
    # 系统管理/系统配置/全局属性
    键: NODE_HOME
@@ -96,9 +94,7 @@ docker run -it --name jenkins -e TZ=Asia/Shanghai \
    键: PATH
    值: $NODE_HOME/bin:$PATH
    ```
-
 2. 单节点环境变量配置
-
    ```sh
    # 系统管理/节点管理/设置/节点属性/
    键: NODE_HOME
@@ -107,11 +103,9 @@ docker run -it --name jenkins -e TZ=Asia/Shanghai \
    值: $NODE_HOME/bin:$PATH
    ```
 
-
 # 6. 全局属性
 
  1. 工具位置
-
     ```sh
     # 系统管理/系统配置/全局属性
     (Allure Commandline) allure
@@ -134,3 +128,16 @@ docker run -it --name jenkins -e TZ=Asia/Shanghai \
    - 复制GitLab webhook URL: xxxxxx 
    - 高级 > 可设置触发分支
    - 将GitLab webhook URL添加到GitLab WebHook中
+
+# 8. 常见错误
+> ERROR: Step ‘Allure Report’ aborted due to exception: 
+com.fasterxml.jackson.core.io.JsonEOFException: Unexpected end-of-input in field name
+at [Source: (ZipFileInflaterInputStream); line: 1537127, column: 22]
+
+错误原因：日志内容太大，增加tomcat内存。
+```sh
+vi catalina.bat
+# 第一行加入
+set JAVA_OPTS="-Xms1024m -Xmx4096m -Xss1024K -XX:PermSize=512m -XX:MaxPermSize=2048m"
+# 重启tomcat
+```
