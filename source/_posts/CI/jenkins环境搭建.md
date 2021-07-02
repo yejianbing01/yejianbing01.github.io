@@ -65,7 +65,11 @@ docker run -it --name jenkins -e TZ=Asia/Shanghai \
    source /etc/profile
    # 5. 重启tomcat
    ```
-6. jenkins添加全局凭证-ssh拉取git代码
+6. jenkins 修改登录用户
+   ```sh
+   vim /etc/sysconfig/jenkins
+   ```
+7. jenkins添加全局凭证-ssh拉取git代码
    ```sh
    cd ~/.ssh
    # 如果没有文件则，需要新生成ssh秘钥
@@ -73,7 +77,7 @@ docker run -it --name jenkins -e TZ=Asia/Shanghai \
    # id_rsa.pub：公钥，复制到gitlab平台配置ssh-key
    # id_rsa：私钥，复制到jenkins平台配置jenkins凭据
    ```
-7. jenkins域名地址配置
+8. jenkins域名地址配置
    ```sh
    # 系统管理/系统配置/Jenkins URL
    ```
@@ -140,4 +144,30 @@ vi catalina.bat
 # 第一行加入
 set JAVA_OPTS="-Xms1024m -Xmx4096m -Xss1024K -XX:PermSize=512m -XX:MaxPermSize=2048m"
 # 重启tomcat
+```
+防止allure生成报告的进程未停止，占用allure-results目录
+```sh
+ALLURE_PID_LIST=$(ps -ef | grep 'allure' | grep -v 'grep' | awk '{print $2}')
+
+for ALLURE_PID in $ALLURE_PID_LIST;
+do
+   kill -9 $ALLURE_PID
+done;
+```
+
+定时构建不发送邮件
+```sh
+user="Timer Trigger"
+debug=false
+if [ "$BUILD_USER" = "$user" ]
+then
+	debug=true
+fi
+
+
+cd ./node
+
+rm -rf allure-results
+
+npm run slh1 -- --env=slh1_adev1 --debug=$debug
 ```
