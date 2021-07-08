@@ -6,21 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>jmeter分布式环境搭建 | Hexo</title>
+  <title>graphQL | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="jmeter分布式环境搭建">
-<meta property="og:url" content="http://example.com/2020/10/14/jmeter%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.html">
+  <meta name="description" content="GraphQL 是一个用于 API 的查询语言，是一个使用基于类型系统来执行查询的服务端运行时（类型系统由你的数据定义）。GraphQL 并没有和任何特定数据库或者存储引擎绑定，而是依靠你现有的代码和数据支撑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="graphQL">
+<meta property="og:url" content="http://example.com/2020/11/04/graphQL/graphQL/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="GraphQL 是一个用于 API 的查询语言，是一个使用基于类型系统来执行查询的服务端运行时（类型系统由你的数据定义）。GraphQL 并没有和任何特定数据库或者存储引擎绑定，而是依靠你现有的代码和数据支撑">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/jmeter.png">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/467798/1585726547607-7f977cbd-d937-4a86-9782-3a62f07bd6bb.png#align=left&display=inline&height=448&name=image.png&originHeight=896&originWidth=1600&size=439175&status=done&style=none&width=800">
-<meta property="article:published_time" content="2020-10-14T11:31:39.000Z">
-<meta property="article:modified_time" content="2020-11-04T15:56:40.064Z">
+<meta property="og:image" content="http://example.com/images/graphql.png">
+<meta property="article:published_time" content="2020-11-04T04:37:23.000Z">
+<meta property="article:modified_time" content="2021-01-25T14:16:00.990Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="jmeter">
+<meta property="article:tag" content="graphQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/jmeter.png">
+<meta name="twitter:image" content="http://example.com/images/graphql.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -156,87 +157,78 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-jmeter分布式环境搭建" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-graphQL/graphQL" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      jmeter分布式环境搭建
+      graphQL
     </h1>
   
 
         
-        <a href="/2020/10/14/jmeter%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="archive-article-date">
-  	<time datetime="2020-10-14T11:31:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
+        <a href="/2020/11/04/graphQL/graphQL/" class="archive-article-date">
+  	<time datetime="2020-11-04T04:37:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/images/jmeter.png" alt="alt"></p>
+        <p><img src="/images/graphql.png" alt="alt"></p>
+<p>GraphQL 是一个用于 API 的查询语言，是一个使用基于类型系统来执行查询的服务端运行时（类型系统由你的数据定义）。GraphQL 并没有和任何特定数据库或者存储引擎绑定，而是依靠你现有的代码和数据支撑</p>
 <a id="more"></a>
 
-<h1 id="1-环境搭建"><a href="#1-环境搭建" class="headerlink" title="1.环境搭建"></a>1.环境搭建</h1><ul>
-<li><p>安装java环境</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;profile</span><br><span class="line"></span><br><span class="line">export JAVA_HOME&#x3D;&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8.0_131</span><br><span class="line"></span><br><span class="line">export JRE_HOME&#x3D;$&#123;JAVA_HOME&#125;&#x2F;jre </span><br><span class="line"></span><br><span class="line">export CLASSPATH&#x3D;.:$&#123;JAVA_HOME&#125;&#x2F;lib:$&#123;JRE_HOME&#125;&#x2F;lib</span><br><span class="line"></span><br><span class="line">export  PATH&#x3D;$&#123;JAVA_HOME&#125;&#x2F;bin:$PATH</span><br><span class="line"></span><br><span class="line">source &#x2F;etc&#x2F;profile</span><br><span class="line"></span><br><span class="line">java –version</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://jmeter.apache.org/download_jmeter.cgi">下载安装jmeter</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1.将下载好的jmeter解压到目录&#x2F;usr&#x2F;local或其他目录</span><br><span class="line"></span><br><span class="line">vi &#x2F;etc&#x2F;profile</span><br><span class="line"></span><br><span class="line">export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;apache-jmeter-3.2&#x2F;bin&#x2F;:$PATH</span><br><span class="line"></span><br><span class="line">source &#x2F;etc&#x2F;profile</span><br><span class="line"></span><br><span class="line">jmeter -v</span><br><span class="line"></span><br><span class="line">2.也可不加入环境变量设置软连接</span><br><span class="line"></span><br><span class="line">ln -s &#x2F;usr&#x2F;local&#x2F;jmeter&#x2F;apache-jmeter-5.0&#x2F;bin&#x2F;jmeter.sh &#x2F;usr&#x2F;local&#x2F;bin&#x2F;jmeter</span><br><span class="line"></span><br><span class="line">ln -s &#x2F;usr&#x2F;local&#x2F;jmeter&#x2F;apache-jmeter-5.0&#x2F;bin&#x2F;jmeter-server &#x2F;usr&#x2F;local&#x2F;bin&#x2F;jmeter-server</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>jmeter命令行选项</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">-t, --testfile &#123;argument&#125;  # 要运行的jmeter脚本</span><br><span class="line"></span><br><span class="line">-j, --jmeterlogfile &#123;argument&#125; # 指定记录jmeter log的文件，默认为jmeter.log</span><br><span class="line"></span><br><span class="line">-l, --logfile &#123;argument&#125; # 记录采样器Log的文件 指定生成测试结果的保存文件， jtl 文件格式</span><br><span class="line"></span><br><span class="line">-n, --nongui  # 以nongui模式运行jmeter</span><br><span class="line"></span><br><span class="line">-s, --server # 运行JMeter server </span><br><span class="line"></span><br><span class="line">-L, --loglevel &#123;argument&#125;&#x3D;&#123;value&#125; # 定义日志等级</span><br><span class="line"></span><br><span class="line">-r, --runremote (non-GUI only)  #启动远程server（在jmeter property中定义好的remote_hosts），公在non-gui模式下此参数才生效</span><br><span class="line"></span><br><span class="line">-R, --remotestart server1,... (non-GUI only) # 启动远程server（如果使用此参数，将会忽略jmeter property中定义的remote_hosts）</span><br><span class="line"></span><br><span class="line">-d, --homedir &#123;argument&#125; # Jmeter运行的主目录</span><br><span class="line"></span><br><span class="line">-X, --remoteexit # 测试结束时，退出（在non-gui模式下）</span><br><span class="line"></span><br><span class="line">-e : 测试结束后，生成测试报告</span><br><span class="line"></span><br><span class="line">-o : 指定测试报告的存放位置 指定的文件及文件夹，必须不存在 ，否则执行会失败，对应上面的命令就是resultReport文件夹必须不存在否则报错</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<p>我们这次使用的是: jmeter -n -t $WORKSPACE/jmeter/ss/pre/dresDetail.jmx -r -l /usr/local/jmeter/ss/dresDetail_result/dresDetail.jtl -e -o /usr/local/jmeter/ss/dresDetail_report</p>
+<h3 id="Schema和类型-类型定义使用-type-关键字"><a href="#Schema和类型-类型定义使用-type-关键字" class="headerlink" title="Schema和类型(类型定义使用 type 关键字)"></a>Schema和类型(类型定义使用 type 关键字)</h3><p>GraphQL 服务可以用任何语言编写，因为我们并不依赖于任何特定语言的句法句式（譬如 JavaScript）来与 GraphQL schema 沟通，我们定义了自己的简单语言，称之为 “GraphQL schema language” —— 它和 GraphQL 的查询语言很相似，让我们能够和 GraphQL schema 之间可以无语言差异地沟通</p>
+<p>每一个 GraphQL 服务都会定义一套类型，用以描述你可能从那个服务查询到的数据。每当查询到来，服务器就会根据 schema 验证并执行查询</p>
 <ul>
-<li>jmeter 分布式server设置<ul>
-<li>主控机<ul>
-<li>在主控机的jmeter的bin目录找到配置文件 jmeter.properties</li>
-<li>找到里面的remote_hosts部分，修改内容为：remote_hosts=xx，xx代表的是压力机的ip。如果是多个压力机，之间使用[,]分隔</li>
-<li>修改jmeter.properties中的 server.rmi.ssl.disable=true</li>
+<li><p>特殊类型<br>每一个 GraphQL 服务都有一个 query 类型，可能有一个 mutation 类型。这两个类型和常规对象类型无差<br>但是它们之所以特殊，是因为它们定义了每一个 GraphQL 查询的入口</p>
+<ol>
+<li>Query</li>
+<li>Mutation<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">type Query &#123;</span><br><span class="line">    hero(参数名称: 参数类型): 返回值类型</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>标量类型(类似基本数据类型)</p>
+<ul>
+<li>Int：有符号 32 位整数</li>
+<li>Float: 有符号双精度浮点值</li>
+<li>String: UTF‐8 字符序列</li>
+<li>Boolean: true 或者 false</li>
+<li>ID: 表示一个唯一标识符，通常用以重新获取对象或者作为缓存中的键。ID 类型使用和 String 一样的方式序列化；然而将其定义为 ID 意味着并不需要人类可读型。</li>
 </ul>
 </li>
-<li>压力机<ul>
-<li>压力机控制机在同一局域网内,也就是可以互相访问</li>
-<li>压力机也要安装jmeter</li>
-<li>jmeter的bin目录找到配置文件 jmeter.properties中找修改 server_port=1099</li>
-<li>jmeter的bin目录找到配置文件 jmeter.properties中找修改 server.rmi.localport=1099</li>
-</ul>
+<li><p>自定义标量类型(scalar)</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scalar DateTime</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>枚举类型(enum)<br>枚举类型是一种特殊的标量，它限制在一个特殊的可选值集合内.<br>验证这个类型的任何参数是可选值的的某一个<br>与类型系统沟通，一个字段总是一个有限值集合的其中一个值</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">enum Flag &#123;</span><br><span class="line">    EMPIRE</span><br><span class="line">    JEDI</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>列表和非空( [ 标量类型 ]! )</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">array: [String!]        # 表示数组本身可以为空，但是不能有任何空值的成员</span><br><span class="line">array: null             # 有效</span><br><span class="line">array: []               # 有效</span><br><span class="line">array: [&#39;a&#39;, &#39;b&#39;]       # 有效</span><br><span class="line">array: [&#39;a&#39;, null, &#39;b&#39;] # 错误</span><br><span class="line"></span><br><span class="line">array: [String]!        # 表示数组本身不允许为null</span><br><span class="line">array: null             # 错误</span><br><span class="line">array: []               # 有效</span><br><span class="line">array: [&#39;a&#39;, &#39;b&#39;]       # 有效</span><br><span class="line">array: [&#39;a&#39;, null, &#39;b&#39;] # 有效</span><br></pre></td></tr></table></figure></li>
+<li><p>接口<br>跟许多类型系统一样，GraphQL 支持接口。一个接口是一个抽象类型，它包含某些字段。<br>对象类型必须包含这些字段，才能算实现了这个接口</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">interface User &#123;</span><br><span class="line">    id: ID!</span><br><span class="line">    name: String</span><br><span class="line">    age: Int</span><br><span class="line">    friend: [String!]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type you implements User &#123;</span><br><span class="line">    id: ID!</span><br><span class="line">    name: String</span><br><span class="line">    age: Int</span><br><span class="line">    friend: [String!]</span><br><span class="line">    # 实现类型特有的字段</span><br><span class="line">    car: [String]!</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>联合类型(union) ?<br>联合类型和接口十分相似，但是它并不指定类型之间的任何共同字段</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 任何返回一个 SearchResult 类型的地方，都可能得到一个 Human、Droid 或者 Starship。</span><br><span class="line"># 注意，联合类型的成员需要是具体对象类型；你不能使用接口或者其他联合类型来创造一个联合类型</span><br><span class="line">union SearchResult &#x3D; Human | Droid | Starship</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>输入类型(input)<br>复杂对象作为参数传递给字段。这在变更（mutation）中特别有用，因为有时候你需要传递一整个对象作为新建对象<br>在 GraphQL schema language 中，输入对象看上去和常规对象一模一样，除了关键字是 input 而不是 type<br>输入对象类型上的字段本身也可以指代输入对象类型，但是你不能在你的 schema 混淆输入和输出类型<br>输入对象类型的字段当然也不能拥有参数</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">input User &#123;</span><br><span class="line">    id: ID!</span><br><span class="line">    name: String</span><br><span class="line">    age: Int</span><br><span class="line">    friend: [String!]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Query &#123;</span><br><span class="line">    getUserInfo(user: User): Type</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
-</li>
-<li>jenkins-jmeter持续集成<ul>
-<li>控制机中添加压力机的ssh公钥，使ssh链接不需要密码```<br>ssh-keygen -t rsa  # 一直回车,在用户家目录下生成 ~/.ssh/id_rsa.pub 公钥</li>
-</ul>
-</li>
-</ul>
-<p>复制压力机 ~/.ssh/id_rsa.pub 中的内容存入控制机authorized_keys文件中</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   &lt;!-- - 多个压测任务执行的时候开始前先重启jmeter-server``` --&gt;</span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">ps -A -o pid,cmd | grep jmeter | grep -v &#x27;grep&#x27; | awk &#x27;&#123;print $1&#125;&#x27; | xargs kill -9</span><br><span class="line">cd /usr/local/jmeter/apache-jmeter-5.0/bin</span><br><span class="line">nohup ./jmeter-server &gt; xx.log 2&gt;&amp;1 &amp;</span><br><span class="line">echo &quot;192.168.0.23 setup jmeter finished!&quot;</span><br><span class="line"></span><br><span class="line">ssh root@192.168.0.152 -p 9231 &gt; /dev/null 2&gt;&amp;1 &lt;&lt; eeooff</span><br><span class="line">ps -A -o pid,cmd | grep jmeter | grep -v &#x27;grep&#x27; | awk &#x27;&#123;print $1&#125;&#x27; | xargs kill -9</span><br><span class="line">cd /root/apache-jmeter-5.0/bin</span><br><span class="line">nohup ./jmeter-server &gt; xx.log 2&gt;&amp;1 &amp;</span><br><span class="line">exit</span><br><span class="line">eeooff</span><br><span class="line">echo &quot;192.168.0.152 setup jmeter finished!&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="根字段-amp-解析器-resolver"><a href="#根字段-amp-解析器-resolver" class="headerlink" title="根字段 &amp; 解析器(resolver)"></a>根字段 &amp; 解析器(resolver)</h3><p>每一个 GraphQL 服务端应用的顶层，必有一个类型代表着所有进入 GraphQL API 可能的入口点，我们将它称之为 Root 类型或 Query 类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Query &#123;</span><br><span class="line">    getGoods: (obj, args, context, info) &#x3D;&gt; &#123;</span><br><span class="line">        # obj 上一级对象，如果字段属于根节点查询类型通常不会被使用</span><br><span class="line">        # args 可以提供在 GraphQL 查询中传入的参数</span><br><span class="line">        # context 会被提供给所有解析器，并且持有重要的上下文信息比如当前登入的用户或者数据库访问对象</span><br><span class="line">        # info 一个保存与当前查询相关的字段特定信息以及 schema 详细信息的值</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p>jmeter脚本</p>
-<ul>
-<li><p>BeanShell取样器设置分阶段保存聚合报告</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.jmeter.threads.JMeterContextService;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> num = JMeterContextService.getNumberOfThreads();</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">&quot;当前线程数&quot;</span>+num);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(num&lt;=<span class="number">10</span>)&#123;</span><br><span class="line">System.out.println(<span class="string">&quot;线程区间1-10&quot;</span>);</span><br><span class="line">vars.put(<span class="string">&quot;thread&quot;</span>,<span class="string">&quot;线程数1-10&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(num&gt;=<span class="number">11</span>&amp;&amp;num&lt;=<span class="number">20</span>)&#123;</span><br><span class="line">System.out.println(<span class="string">&quot;线程区间11-20&quot;</span>);</span><br><span class="line">vars.put(<span class="string">&quot;thread&quot;</span>,<span class="string">&quot;线程数11-20&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>异步解析器</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">human(obj, args, context, info) &#123;</span><br><span class="line">    return context.db.loadHumanByID(args.id).then(</span><br><span class="line">        userData &#x3D;&gt; new Human(userData)</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  context 提供了一个数据库访问对象，用来通过查询中传递的参数 id 来查询数据，因为从数据库拉取数据的过程是一个异步操作，该方法返回了一个 Promise 对象，在 JavaScript 语言中 Promise 对象用来处理异步操作，但在许多语言中存在相同的概念，通常称作 Futures、Tasks 或者 Defferred。当数据库返回查询结果，我们就能构造并返回一个新的 Human 对象</p>
+<p>  这里要注意的是，只有解析器能感知到 Promise 的进度，GraphQL 查询只关注一个包含着 name 属性的 human 字段是否返回，在执行期间如果异步操作没有完成，则 GraphQL 会一直等待下去，因此在这个环节需要关注异步处理上的优化</p>
 </li>
-<li><p>JSR223预处理器修改随机hashKey</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsonParam = JSON.parse(vars.get(<span class="string">&quot;jsonParam&quot;</span>));</span><br><span class="line">jsonParam.orders[<span class="number">0</span>].main.hashKey = <span class="string">&#x27;$&#123;__time(,)&#125;$&#123;__Random(10000,99999,)&#125;&#x27;</span>;</span><br><span class="line">vars.put(<span class="string">&quot;jsonParam&quot;</span>,JSON.stringify(jsonParam));</span><br></pre></td></tr></table></figure>
-
-
+<li><p>不重要的解析器 ?</p>
 </li>
-</ul>
+<li><p>标量强制 ?</p>
 </li>
-</ul>
-<p>！！！取消勾选【如果可用，缓存编译脚本】<img src="https://cdn.nlark.com/yuque/0/2020/png/467798/1585726547607-7f977cbd-d937-4a86-9782-3a62f07bd6bb.png#align=left&display=inline&height=448&name=image.png&originHeight=896&originWidth=1600&size=439175&status=done&style=none&width=800" alt="image.png"></p>
-<ul>
-<li>BeanShell断言<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">String response = <span class="string">&quot;&quot;</span>;</span><br><span class="line">String Str = <span class="string">&quot;&#123;\&quot;code\&quot;:0&quot;</span>;</span><br><span class="line">String Str2 = <span class="string">&quot;\&quot;isSuccess\&quot;:1&quot;</span>;</span><br><span class="line"></span><br><span class="line">response = prev.getResponseDataAsString();</span><br><span class="line"><span class="keyword">if</span>(response == <span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">    Failure = <span class="keyword">true</span>;</span><br><span class="line">    FailureMessage = <span class="string">&quot;系统无响应，获取不到响应数据！&quot;</span>;</span><br><span class="line">    log.info(FailureMessage);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(response.contains(Str) == <span class="keyword">false</span> &amp;&amp; response.contains(Str2) == <span class="keyword">false</span>)&#123;</span><br><span class="line">    Failure = <span class="keyword">true</span>;</span><br><span class="line">    String Msg = <span class="string">&quot;\n 期望与实际不符！&quot;</span>;</span><br><span class="line">    FailureMessage = Msg + <span class="string">&quot;\n&quot;</span> + <span class="string">&quot;期望结果:\n&quot;</span> + Str + Str2 + <span class="string">&quot;响应内容: \n&quot;</span> + response + <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    log.info(FailureMessage);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
+<li><p>列表解析器 ?</p>
 </li>
 </ul>
 
@@ -273,7 +265,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jmeter</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">graphQL</a>
         		</li>
       		
 		</ul>
@@ -329,7 +321,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/14/jmeter%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/04/graphQL/graphQL/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -343,18 +335,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/10/14/gitFlow%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/11/04/blog/hexo-0/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          gitFlow开发规范
+          hexo
         
       </div>
     </a>
   
   
-    <a href="/2020/10/14/jenkins%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">jenkins环境搭建</div>
+    <a href="/2020/10/14/git/gitFlow%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">git学习笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -381,7 +373,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">1.环境搭建</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Schema%E5%92%8C%E7%B1%BB%E5%9E%8B-%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89%E4%BD%BF%E7%94%A8-type-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.</span> <span class="toc-text">Schema和类型(类型定义使用 type 关键字)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B9%E5%AD%97%E6%AE%B5-amp-%E8%A7%A3%E6%9E%90%E5%99%A8-resolver"><span class="toc-number">2.</span> <span class="toc-text">根字段 &amp; 解析器(resolver)</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -410,7 +402,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 John Doe
+    		&copy; 2021 John Doe
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -493,6 +485,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
@@ -502,10 +498,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jmeter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
             
             <div class="clearfix"></div>

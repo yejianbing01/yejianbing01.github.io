@@ -6,21 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>gitFlow开发规范 | Hexo</title>
+  <title>Node.js学习笔记 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="gitFlow开发规范">
-<meta property="og:url" content="http://example.com/2020/10/14/gitFlow%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/index.html">
+  <meta name="description" content="Node.jsNode.js 是什么？Node.js 是一个基于 Chrome V8 引擎 的 javaScript 运行环境  异步非阻塞 I&#x2F;O (I&#x2F;O 线程池) 特别适用于 I&#x2F;O 密集型应用 事件循环机制 单线程 跨平台                                      Node 中的任何一个模块都被一个外层函数包裹 123function (exports, r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js学习笔记">
+<meta property="og:url" content="http://example.com/2021/01/20/javaScript/node/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Node.jsNode.js 是什么？Node.js 是一个基于 Chrome V8 引擎 的 javaScript 运行环境  异步非阻塞 I&#x2F;O (I&#x2F;O 线程池) 特别适用于 I&#x2F;O 密集型应用 事件循环机制 单线程 跨平台                                      Node 中的任何一个模块都被一个外层函数包裹 123function (exports, r">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/gitFlow.png">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/421125/1590147659018-127d1630-3229-491a-a498-37f043105f17.png#align=left&display=inline&height=380&margin=%5Bobject%20Object%5D&name=image.png&originHeight=380&originWidth=614&size=43457&status=done&style=none&width=614">
-<meta property="article:published_time" content="2020-10-14T11:45:54.000Z">
-<meta property="article:modified_time" content="2020-11-04T15:56:40.063Z">
+<meta property="article:published_time" content="2021-01-20T07:33:57.000Z">
+<meta property="article:modified_time" content="2021-01-25T14:16:00.991Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/gitFlow.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -156,56 +154,102 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-gitFlow开发规范" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-javaScript/node" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      gitFlow开发规范
+      Node.js学习笔记
     </h1>
   
 
         
-        <a href="/2020/10/14/gitFlow%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/" class="archive-article-date">
-  	<time datetime="2020-10-14T11:45:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
+        <a href="/2021/01/20/javaScript/node/" class="archive-article-date">
+  	<time datetime="2021-01-20T07:33:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/images/gitFlow.png" alt="alt"></p>
+        <h1 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h1><h2 id="Node-js-是什么？"><a href="#Node-js-是什么？" class="headerlink" title="Node.js 是什么？"></a>Node.js 是什么？</h2><p>Node.js 是一个基于 Chrome V8 引擎 的 javaScript 运行环境</p>
+<ul>
+<li>异步非阻塞 I/O (I/O 线程池)</li>
+<li>特别适用于 I/O 密集型应用</li>
+<li>事件循环机制</li>
+<li>单线程</li>
+<li>跨平台                                    </li>
+</ul>
+<p>Node 中的任何一个模块都被一个外层函数包裹</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params">exports, require, module, __filename, __dirname</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// console.log(arguments.callee.toString())</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 
+<h2 id="Node-js-中的事件循环机制-EventLoop"><a href="#Node-js-中的事件循环机制-EventLoop" class="headerlink" title="Node.js 中的事件循环机制(EventLoop)"></a>Node.js 中的事件循环机制(EventLoop)</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 延时定时器</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br><span class="line"><span class="comment">// 循环定时器</span></span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置立即执行函数</span></span><br><span class="line">setImmediate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br><span class="line"><span class="comment">// 设置立即执行函数</span></span><br><span class="line">process.nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br></pre></td></tr></table></figure>
 
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/B0git9cp7UxjwfD5LYx5HQ">https://mp.weixin.qq.com/s/B0git9cp7UxjwfD5LYx5HQ</a></p>
-<h3 id="分支说明"><a href="#分支说明" class="headerlink" title="分支说明"></a>分支说明</h3><ul>
-<li>master——主分支(受保护),日常构建集成使用，禁止直接提交代码</li>
-<li>hotfix——热修分支,分支以’yy_MM_dd’日期格式命名,用于修复主分支bug，修复后合并至master与develop，并删除</li>
-<li>develop——开发分支(受保护),禁止直接提交代码</li>
-<li>feature——新功能分支</li>
-<li>release——发布定期要上线的功能，创建后进行一轮构建，修复问题，修复后执行’npm run release’更新版本号与changeLog.md，合并至master与develop,并删除</li>
-</ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2020/png/421125/1590147659018-127d1630-3229-491a-a498-37f043105f17.png#align=left&display=inline&height=380&margin=%5Bobject%20Object%5D&name=image.png&originHeight=380&originWidth=614&size=43457&status=done&style=none&width=614" alt="image.png"></p>
-<h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><ol>
-<li>完成feature分支后需要按以下流程进行,<ol>
-<li>需要先合并develop至当前feature，并解决可能产生的冲突</li>
-<li>在gitlab上创建merge request,进行代码review</li>
+<ol>
+<li><p>第一阶段：timers(定时器阶段–setTimeout,setInterval)</p>
+<ol>
+<li>开始计时</li>
+<li>执行定时器的回调</li>
 </ol>
 </li>
-<li>完成hotfix也需要在gitlab上创建merge request,进行代码review</li>
-<li>提交代码时，会有<a target="_blank" rel="noopener" href="https://hzecool.yuque.com/rmobir/va1385/nk2ayu">eslint</a>进行静态代码检查和<a target="_blank" rel="noopener" href="https://hzecool.yuque.com/rmobir/va1385/dpn9i5">commitLint</a>提交规范检查，不符合规范会禁止提交</li>
-</ol>
-<h3 id="在sourcetree中使用git-flow"><a href="#在sourcetree中使用git-flow" class="headerlink" title="在sourcetree中使用git flow"></a>在sourcetree中使用git flow</h3><ol>
-<li>使用git flow初始化仓库<ol>
-<li>mac</li>
+<li><p>第二阶段：pending callbacks（系统阶段）</p>
+</li>
+<li><p>第三阶段：idle，prepare（准备阶段）</p>
+</li>
+<li><p>第四阶段：poll（轮询阶段，核心）</p>
+<ol>
+<li>如果回调队列里有待执行的回调函数，从回调队列中取出回调函数，同步执行，直到回调队列为空，或者达到系统的最大限度</li>
+<li>如果回调队列为空<ol>
+<li>如果有设置过setImmediate：进入下一个check阶段，目的是为了执行setImmediate 所设置的回调函数</li>
+<li>如果未设置过setImmediate：在此阶段停留，等待回调函数被插入回调队列。若定时器到点了，进入 下一个check阶段：为了进入第一阶段</li>
 </ol>
 </li>
 </ol>
-<p>仓库-&gt; git flow或hg flow -&gt; 初始化仓库<br>b. windows<br>点击右上角git工作流 初次使用会提示使用git flow初始化此仓库，点击确认即可</p>
+</li>
+<li><p>第五个阶段：check（专门用于执行 setImmediate 所设置的回调）</p>
+</li>
+<li><p>第六阶段：close callbacks（关闭回调阶段）</p>
+</li>
+</ol>
+<h2 id="Node包管理器–NPM-Node-Package-Manager"><a href="#Node包管理器–NPM-Node-Package-Manager" class="headerlink" title="Node包管理器–NPM(Node Package Manager)"></a>Node包管理器–NPM(Node Package Manager)</h2><p>npm 常用命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 初始化项目</span></span><br><span class="line">npm init</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装生产依赖包</span></span><br><span class="line">npm install xxx --save 或 npm i xxx -S 或 npm i xxx</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装开发依赖包</span></span><br><span class="line">npm install xxx --save-dev 或 npm i xxx -D</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装全局依赖包</span></span><br><span class="line">npm install xxx -g 或 npm i xxx -g</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看全局安装位置</span></span><br><span class="line">npm root -g</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装package.json中声明的所有包</span></span><br><span class="line">npm install 或 npm i</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 移除依赖包，同时会一处package.json中的申明</span></span><br><span class="line">npm remove xxx</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看安装的依赖包版本</span></span><br><span class="line">npm ls xxx</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 关于package.json中的版本 ^: 锁定大版本  ~: 锁定小版本</span></span><br></pre></td></tr></table></figure>
 
+<p>cnpm使用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 1. 直接安装cnpm (不推荐使用cnpm命令有bug)</span></span><br><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 2. 设置cnpm仓库地址为淘宝镜像地址</span></span><br><span class="line">npm config set registry https://registry.npm.taobao.org</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 3. 查看是否更改成功</span></span><br><span class="line">npm config get registry</span><br></pre></td></tr></table></figure>
+
+<p>yarn</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 全局安装yarn</span></span><br><span class="line">npm install yarn -g</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 由于yarn的全局安装位置与npm不同，所以要配置yarn的全局安装路径到环境变量中。将以下两个命令输出的路径添加到环境变量中。</span></span><br><span class="line">yarn global dir</span><br><span class="line">yarn global bin</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 初始化项目</span></span><br><span class="line">yarn init -y</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载项目中声明的依赖</span></span><br><span class="line">yarn</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载指定依赖</span></span><br><span class="line">yarn add xxx@1.2.3</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载指定开发依赖</span></span><br><span class="line">yarn add xxx@1.2.3 -D</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 全局下载指定依赖包</span></span><br><span class="line">yarn global add xxx</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除依赖包</span></span><br><span class="line">yarn remove xxx</span><br><span class="line">yarn global remove xxx</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置淘宝镜像</span></span><br><span class="line">yarn config set registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<h1 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//  性能差，弃用。1. 在堆内存中开启空间 2. 清理</span></span><br><span class="line"><span class="keyword">let</span> buf = <span class="keyword">new</span> Buffer(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在堆内存中开辟空间(该空间完全干净)</span></span><br><span class="line"><span class="keyword">let</span> buf = Buffer.alloc(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在堆内存中开辟空间(该空间中可能有数据)，性能最好</span></span><br><span class="line"><span class="keyword">let</span> buf = Buffer.allocUnsafe(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将数据存入Buffer</span></span><br><span class="line"><span class="keyword">let</span> buf = Buffer.from(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输入Buffer对象。Buffer存的是二进制数据，输入的时候会转换成16进制 </span></span><br><span class="line"><span class="comment">// &lt;Buffer 68 65 6c 6c 6f 20 77 6f 72 6c 64&gt;</span></span><br><span class="line"><span class="built_in">console</span>.log(buf) </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="fs-File-System文件系统"><a href="#fs-File-System文件系统" class="headerlink" title="fs(File System文件系统)"></a>fs(File System文件系统)</h1><ol>
+<li>简单文件写入</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">异步文件写入</span></span><br><span class="line"><span class="comment">options</span></span><br><span class="line"><span class="comment">    - encoding 编码格式</span></span><br><span class="line"><span class="comment">    - mode 设置文件的操作权限 默认: 0O666</span></span><br><span class="line"><span class="comment">    - flag 写入模式 a: 追加  默认 w: 覆盖写入</span></span><br><span class="line"><span class="comment">*/</span> </span><br><span class="line">fs.writeFile(path, data, options, callback);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 同步写入</span></span><br><span class="line">fs.writeFileSync();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>流式文件写入</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">创建一个可写流</span></span><br><span class="line"><span class="comment">- path 文件路径</span></span><br><span class="line"><span class="comment">- options 配置对象</span></span><br><span class="line"><span class="comment">    - flags: </span></span><br><span class="line"><span class="comment">    - encoding: </span></span><br><span class="line"><span class="comment">    - fd: 文件统一 标识</span></span><br><span class="line"><span class="comment">    - mode: </span></span><br><span class="line"><span class="comment">    - autoClose: 自动关闭文件</span></span><br><span class="line"><span class="comment">    - emitClose: 强制关闭</span></span><br><span class="line"><span class="comment">    - start: </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> ws = fs.createWriteStream(path, options);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注册监听可写流打开，关闭事件</span></span><br><span class="line">ws.on(<span class="string">&#x27;open&#x27;</span>,<span class="function">()=&gt;</span>&#123;&#125;)</span><br><span class="line">ws.on(<span class="string">&#x27;close&#x27;</span>,<span class="function">()=&gt;</span>&#123;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用可写流写入文件</span></span><br><span class="line">ws.write(<span class="string">&#x27;hello world&#x27;</span>);</span><br><span class="line"><span class="comment">// 关闭可写流</span></span><br><span class="line">ws.end()</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>简单文件读取</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line">fs.readFile(path, <span class="function"><span class="keyword">function</span>(<span class="params">error, data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (error) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(error);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(data) <span class="comment">// 读取的data为Buffer</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>流式文件读取</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">创建一个可读流</span></span><br><span class="line"><span class="comment">- path 文件路径</span></span><br><span class="line"><span class="comment">- options 配置对象</span></span><br><span class="line"><span class="comment">    - flags: </span></span><br><span class="line"><span class="comment">    - encoding: </span></span><br><span class="line"><span class="comment">    - fd: 文件统一 标识</span></span><br><span class="line"><span class="comment">    - mode: </span></span><br><span class="line"><span class="comment">    - autoClose</span></span><br><span class="line"><span class="comment">    - emitClose:</span></span><br><span class="line"><span class="comment">    - start: </span></span><br><span class="line"><span class="comment">    - end: </span></span><br><span class="line"><span class="comment">    - highWaterMark：每次读取数据的大小，默认值是64 * 1024Byte</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> rs = fs.createReadStream(__dirname + <span class="string">&#x27;/test.txt&#x27;</span>,);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检测流状态</span></span><br><span class="line">rs.on(<span class="string">&#x27;open&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;可读流打开了&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">rs.on(<span class="string">&#x27;close&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;可读流关闭了&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line">rs.on(<span class="string">&#x27;data&#x27;</span>, <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data.length); <span class="comment">// 输出是65536，每次读取64KB的内容</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>边读取边写入<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> rs = fs.createReadStream(__dirname + <span class="string">&#x27;/test.txt&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> ws = fs.createWriteStream(__dirname + <span class="string">&#x27;/test1.txt&#x27;</span>);</span><br><span class="line"></span><br><span class="line">ws.on(<span class="string">&#x27;open&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;可写流打开了&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">ws.on(<span class="string">&#x27;close&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;可写流关闭了&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">rs.on(<span class="string">&#x27;open&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;可读流打开了&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">rs.on(<span class="string">&#x27;close&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;可读流关闭了&#x27;</span>);</span><br><span class="line">    ws.close();</span><br><span class="line">&#125;)</span><br><span class="line">rs.on(<span class="string">&#x27;data&#x27;</span>, <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data.length); <span class="comment">// 输出是65536，每次读取64KB的内容</span></span><br><span class="line">    ws.write(data, <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">       err &amp;&amp; <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="mongoose"><a href="#mongoose" class="headerlink" title="mongoose"></a>mongoose</h1></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 安装依赖</span></span><br><span class="line">npm install mongoose</span><br><span class="line"></span><br><span class="line"><span class="comment">// 连接数据库</span></span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">&#x27;mongoose&#x27;</span>);</span><br><span class="line"></span><br><span class="line">mongoose.connect(<span class="string">&#x27;mongodb://localhost:27017/demo&#x27;</span>, &#123;</span><br><span class="line">    useNewUrlParser: <span class="literal">true</span>,</span><br><span class="line">    useUnifiedTopology: <span class="literal">true</span></span><br><span class="line">&#125;, <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;数据库连接成功&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听数据库连接状态</span></span><br><span class="line">mongoose.connection.on(<span class="string">&#x27;open&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;数据库连接失败&#x27;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;数据库连接成功&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入模型对象</span></span><br><span class="line"><span class="keyword">const</span> Schema = mongoose.Schema;</span><br><span class="line"><span class="comment">// 创建约束对象</span></span><br><span class="line"><span class="keyword">const</span> Student = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line">    stu_id: &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">required</span>: <span class="literal">true</span>, <span class="attr">unique</span>: <span class="literal">true</span> &#125;, <span class="comment">// required 必填项 unique 唯一值</span></span><br><span class="line">    name: &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">required</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">    age: &#123; <span class="attr">type</span>: <span class="built_in">Number</span>, <span class="attr">required</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">    sex: &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">required</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">    hobby: [<span class="built_in">String</span>],</span><br><span class="line">    info: Schema.Types.Mixed, <span class="comment">// 任意类型</span></span><br><span class="line">    date: &#123; <span class="attr">type</span>: <span class="built_in">Date</span>, <span class="attr">default</span>: <span class="built_in">Date</span>.now() &#125;, <span class="comment">// default 默认值</span></span><br><span class="line">    flag: &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="string">&#x27;1&#x27;</span> &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建模型对象</span></span><br><span class="line"><span class="keyword">const</span> stuModel = mongoose.model(<span class="string">&#x27;stuModel&#x27;</span>, Student, <span class="string">&#x27;students&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="comment">// CRUD</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// -------------create</span></span><br><span class="line">stuModel.create(&#123;</span><br><span class="line">    stu_id: <span class="string">&#x27;001&#x27;</span>,</span><br><span class="line">    name: <span class="string">&#x27;demo&#x27;</span>,</span><br><span class="line">    age: <span class="number">18</span>,</span><br><span class="line">    sex: <span class="string">&#x27;男&#x27;</span>,</span><br><span class="line">    hobby: [<span class="string">&#x27;敲代码&#x27;</span>],</span><br><span class="line">    info: <span class="string">&#x27;info&#x27;</span>,</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">        err &amp;&amp; <span class="built_in">console</span>.log(err);</span><br><span class="line">        data &amp;&amp; <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// -------------read</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 返回数组，如果没有数据则返回空数组</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">stuModel.find(&#123;&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">    err &amp;&amp; <span class="built_in">console</span>.log(err);</span><br><span class="line">    data &amp;&amp; <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 返回一个对象，如果没有数据则返回 null</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">stuModel.findOne(&#123;&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">    err &amp;&amp; <span class="built_in">console</span>.log(err);</span><br><span class="line">    data &amp;&amp; <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  &#123;name: 1, _id: 0&#125; 1:  返回该字段 0：不返回该字段</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">stuModel.findOne(&#123;<span class="attr">flag</span>: <span class="number">1</span>&#125;, &#123;<span class="attr">name</span>: <span class="number">1</span>, <span class="attr">_id</span>: <span class="number">0</span>&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">    err &amp;&amp; <span class="built_in">console</span>.log(err);</span><br><span class="line">    data &amp;&amp; <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// -------------update</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 更新数据，更新内容没传的字段不会被覆盖</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">stuModel.updateOne(&#123; <span class="attr">name</span>: <span class="string">&#x27;demo&#x27;</span> &#125;, &#123; <span class="attr">age</span>: <span class="number">8</span> &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">    err &amp;&amp; <span class="built_in">console</span>.log(err);</span><br><span class="line">    data &amp;&amp; <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// -------------delete</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 删除单个</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">stuModel.deleteOne(&#123;<span class="attr">name</span>: <span class="string">&#x27;demo&#x27;</span>&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">    err &amp;&amp; <span class="built_in">console</span>.log(err);</span><br><span class="line">    data &amp;&amp; <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 删除多个</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">stuModel.deleteMany(&#123;<span class="attr">flag</span>: <span class="string">&#x27;0&#x27;</span>&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">    err &amp;&amp; <span class="built_in">console</span>.log(err);</span><br><span class="line">    data &amp;&amp; <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
 
       
@@ -234,17 +278,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -295,7 +328,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/14/gitFlow%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/01/20/javaScript/node/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -309,18 +342,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/11/04/graphQL/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/07/08/Linux/linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          graphQL
+          (no title)
         
       </div>
     </a>
   
   
-    <a href="/2020/10/14/jmeter%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">jmeter分布式环境搭建</div>
+    <a href="/2020/12/27/Docker/Docker/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Docker学习笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -347,7 +380,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E8%AF%B4%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">分支说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%87%E6%B3%A8"><span class="toc-number">2.</span> <span class="toc-text">备注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8sourcetree%E4%B8%AD%E4%BD%BF%E7%94%A8git-flow"><span class="toc-number">3.</span> <span class="toc-text">在sourcetree中使用git flow</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Node-js"><span class="toc-number">1.</span> <span class="toc-text">Node.js</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">Node.js 是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js-%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6-EventLoop"><span class="toc-number">1.2.</span> <span class="toc-text">Node.js 中的事件循环机制(EventLoop)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E2%80%93NPM-Node-Package-Manager"><span class="toc-number">1.3.</span> <span class="toc-text">Node包管理器–NPM(Node Package Manager)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Buffer"><span class="toc-number">2.</span> <span class="toc-text">Buffer</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fs-File-System%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.</span> <span class="toc-text">fs(File System文件系统)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mongoose"><span class="toc-number">4.</span> <span class="toc-text">mongoose</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -376,7 +409,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 John Doe
+    		&copy; 2021 John Doe
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -459,6 +492,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
@@ -468,10 +505,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jmeter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
             
             <div class="clearfix"></div>

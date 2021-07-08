@@ -6,22 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>allure学习笔记 | Hexo</title>
+  <title>Archives: 2021/7 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="allure学习笔记">
-<meta property="og:url" content="http://example.com/2020/10/14/allure%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/archives/2021/07/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/allure.png">
-<meta property="og:image" content="http://example.com/2020/10/14/allure%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/suite.png">
-<meta property="og:image" content="http://example.com/2020/10/14/allure%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/feature.png">
-<meta property="og:image" content="http://example.com/2020/10/14/allure%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/step.png">
-<meta property="article:published_time" content="2020-10-14T07:33:57.000Z">
-<meta property="article:modified_time" content="2020-11-04T15:56:40.063Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/allure.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -157,297 +150,43 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-allure学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      allure学习笔记
-    </h1>
-  
-
-        
-        <a href="/2020/10/14/allure%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-10-14T07:33:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/07/08/Linux/linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/" class="archive-article-date">
+  	<time datetime="2021-07-08T15:36:55.952Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-08</time>
 </a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/images/allure.png" alt="alt"></p>
-<a id="more"></a>
-
-<h2 id="Allure-pytest"><a href="#Allure-pytest" class="headerlink" title="Allure-pytest"></a>Allure-pytest</h2><ul>
-<li>生成 allure 结果目录(‘–alluredir’,’../report/allure’)</li>
-<li>生成 allure 报告<ul>
-<li>安装 allure 服务(‘brew install allure’)</li>
-<li>allure generate ./reportallure -o ./allureReport –clean (reportallure是alluredir生成的xml目录，allureReport是最终生成html的目录)</li>
-<li>allure serve ./allureReport (运行后，浏览器会自动跳转到allure report界面)</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hao2018/p/11135180.html">pytest+allure+jenkins集成</a></li>
-</ul>
-<h3 id="allure-pytest-定制化报告"><a href="#allure-pytest-定制化报告" class="headerlink" title="allure-pytest 定制化报告"></a>allure-pytest 定制化报告</h3><ol>
-<li><p>parent_suite 最上层测试套</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@allure.parent_suite(&#x27;xxxx&#x27;)</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>suite 测试套</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@allure.suite(&#x27;xxxx&#x27;)</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>sub_suite 下层测试套</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@allure.sub_suite(&#x27;xxxx&#x27;)</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>title 下层测试套</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@allure.title(&#x27;xxxx&#x27;)</span></span><br></pre></td></tr></table></figure>
-
-<p> <img src="./suite.png" alt="1,2,3,4"></p>
-</li>
-<li><p>feature 标注主要功能模块</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@allure.feature(&#x27;xxxx&#x27;)</span></span><br></pre></td></tr></table></figure>
-
-<p> <img src="./feature.png" alt="5"></p>
-</li>
-<li><p>story 标注Features功能模块下的分支功能</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@allure.story(&#x27;xxxx&#x27;)</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>severity 标注测试用例的重要级别 (图表优先级)</p>
-<ul>
-<li><p>blocker级别：中断缺陷（客户端程序无响应，无法执行下一步操作）</p>
-</li>
-<li><p>critical级别：临界缺陷（功能点缺失）</p>
-</li>
-<li><p>normal级别：正常    默认为这个级别</p>
-</li>
-<li><p>minor级别：次要缺陷（界面错误与UI需求不符）</p>
-</li>
-<li><p>trivial级别：轻微缺陷（必输项无提示，或者提示不规范</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@allure.severity(&quot;trivial&quot;)</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>with allure.step 分步骤备注</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@allure.step(&quot;这是两个整数的比较&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_env</span>(<span class="params">self, env_name</span>):</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">切换环境</span></span><br><span class="line"><span class="string">:param env_name:</span></span><br><span class="line"><span class="string">:return:</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">with</span> allure.step(<span class="string">f&#x27;切换环境到: <span class="subst">&#123;env_name&#125;</span>&#x27;</span>):</span><br><span class="line">    self.click(By.XPATH, <span class="string">&quot;//*[contains(@text,&#x27;环境&#x27;)]&quot;</span>)</span><br><span class="line">    log.info(<span class="string">&quot;点击切换环境&quot;</span>)</span><br><span class="line">    self.click(By.XPATH, <span class="string">f&quot;//*[@text=&#x27;<span class="subst">&#123;env_name&#125;</span>&#x27;]&quot;</span>)</span><br><span class="line">    log.info(<span class="string">f&quot;切换到:<span class="subst">&#123;env_name&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p> <img src="./step.png" alt="8"></p>
-</li>
-<li><p>attach 用于向测试报告中输入一些附加的信息，通常是一些测试数据信息。</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Attach</span>(<span class="params">object</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span>(<span class="params">self, body, name=None, attachment_type=None, extension=None</span>):</span></span><br><span class="line">        plugin_manager.hook.attach_data(body=body, name=name, attachment_type=attachment_type, extension=extension)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">file</span>(<span class="params">self, source, name=None, attachment_type=None, extension=None</span>):</span></span><br><span class="line">        plugin_manager.hook.attach_file(source=source, name=name, attachment_type=attachment_type, extension=extension)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>name就是附件名称，body就是数据，attachment_type就是传类型</p>
-</li>
-<li><p>附件支持的类型（TEXT，HTML，XML，PNG，JPG，JSON，OTHER）</p>
-</li>
-<li><p>图片附件：</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">r&quot;G:\Web_automation\Learn_pytest\test_cases\img\2.jpg&quot;</span>,<span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    file=file.read()</span><br><span class="line">    allure.attach(file,<span class="string">&quot;预期结果&quot;</span>,attachment_type=allure.attachment_type.JPG)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>issue和testcase 添加链接</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@allure.testcase(&quot;https://home.cnblogs.com/&quot;,&quot;测试用例地址请点击跳转&quot;)  # 标记代码，你可以指定连接的名字，报告里面就会现在这个名字的连接</span></span><br><span class="line"><span class="meta">@allure.issue(&quot;http://www.baidu.com&quot;)  # 标记代码，哪个写在后，在报告里面就会显示在前面</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>description 和 description_html</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@allure.description(&#x27;xxxx&#x27;)</span></span><br><span class="line"><span class="meta">@allure.description_html(&#x27;xxxx&#x27;)</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="mocha-allure-reporter"><a href="#mocha-allure-reporter" class="headerlink" title="mocha-allure-reporter"></a>mocha-allure-reporter</h2><ul>
-<li>安装依赖包：npm install mocha-allure-reporter</li>
-<li>生成 allure 结果 mocha –reporter mocha-allure-reporter</li>
-<li>生成 allure 报告<ul>
-<li>安装 allure 服务(‘brew install allure’)</li>
-<li>allure generate ./allure-results -o ./allureReport –clean</li>
-<li>allure serve ./allureReport</li>
-</ul>
-</li>
-</ul>
-<h2 id="allure-–help"><a href="#allure-–help" class="headerlink" title="allure –help"></a>allure –help</h2><p>Usage: allure [options] [command] [command options]<br>  Options:<br>    –help<br>      Print commandline help.<br>    -q, –quiet<br>      Switch on the quiet mode.<br>      Default: false<br>    -v, –verbose<br>      Switch on the verbose mode.<br>      Default: false<br>    –version<br>      Print commandline version.<br>      Default: false<br>  Commands:<br>    generate      Generate the report<br>      Usage: generate [options] The directories with allure results<br>        Options:<br>          -c, –clean<br>            Clean Allure report directory before generating a new one.<br>            Default: false<br>          –config<br>            Allure commandline config path. If specified overrides values from<br>            –profile and –configDirectory.<br>          –configDirectory<br>            Allure commandline configurations directory. By default uses<br>            ALLURE_HOME directory.<br>          –profile<br>            Allure commandline configuration profile.<br>          -o, –report-dir, –output<br>            The directory to generate Allure report into.<br>            Default: allure-report</p>
-<pre><code>serve      Serve the report
-  Usage: serve [options] The directories with allure results
-    Options:
-      --config
-        Allure commandline config path. If specified overrides values from 
-        --profile and --configDirectory.
-      --configDirectory
-        Allure commandline configurations directory. By default uses 
-        ALLURE_HOME directory.
-      -h, --host
-        This host will be used to start web server for the report.
-      -p, --port
-        This port will be used to start web server for the report.
-        Default: 0
-      --profile
-        Allure commandline configuration profile.
-
-open      Open generated report
-  Usage: open [options] The report directory
-    Options:
-      -h, --host
-        This host will be used to start web server for the report.
-      -p, --port
-        This port will be used to start web server for the report.
-        Default: 0
-
-plugin      Generate the report
-  Usage: plugin [options]
-    Options:
-      --config
-        Allure commandline config path. If specified overrides values from 
-        --profile and --configDirectory.
-      --configDirectory
-        Allure commandline configurations directory. By default uses 
-        ALLURE_HOME directory.
-      --profile
-        Allure commandline configuration profile.</code></pre>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
+    	 
+        <div class="article-info info-on-right">
+          
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/14/allure%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/10/14/jenkins%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          jenkins环境搭建
-        
-      </div>
-    </a>
   
   
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Allure-pytest"><span class="toc-number">1.</span> <span class="toc-text">Allure-pytest</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#allure-pytest-%E5%AE%9A%E5%88%B6%E5%8C%96%E6%8A%A5%E5%91%8A"><span class="toc-number">1.1.</span> <span class="toc-text">allure-pytest 定制化报告</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mocha-allure-reporter"><span class="toc-number">2.</span> <span class="toc-text">mocha-allure-reporter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#allure-%E2%80%93help"><span class="toc-number">3.</span> <span class="toc-text">allure –help</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -457,7 +196,7 @@ plugin      Generate the report
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 John Doe
+    		&copy; 2021 John Doe
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -470,8 +209,8 @@ plugin      Generate the report
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
@@ -540,6 +279,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
@@ -549,10 +292,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jmeter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
             
             <div class="clearfix"></div>

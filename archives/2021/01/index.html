@@ -6,17 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Hexo</title>
+  <title>Archives: 2021/1 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MongoDB文档型数据库(和mysql对应关系)   SQL术语 MongoDB术语&#x2F;概念 解释&#x2F;说明    database database 数据库   table collection 数据库表&#x2F;集合   row document 数据记录行&#x2F;文档   column field 数据字段&#x2F;域   index index 索引   table joins  表链接,MongoDB不支持">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2020/12/29/MongoDB/index.html">
+<meta property="og:url" content="http://example.com/archives/2021/01/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="MongoDB文档型数据库(和mysql对应关系)   SQL术语 MongoDB术语&#x2F;概念 解释&#x2F;说明    database database 数据库   table collection 数据库表&#x2F;集合   row document 数据记录行&#x2F;文档   column field 数据字段&#x2F;域   index index 索引   table joins  表链接,MongoDB不支持">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-12-29T14:33:33.472Z">
-<meta property="article:modified_time" content="2020-12-29T14:33:33.473Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -154,358 +150,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-MongoDB" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-    <div class="article-entry" itemprop="articleBody">
+    
       
-        <h1 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h1><h2 id="文档型数据库-和mysql对应关系"><a href="#文档型数据库-和mysql对应关系" class="headerlink" title="文档型数据库(和mysql对应关系)"></a>文档型数据库(和mysql对应关系)</h2><table>
-<thead>
-<tr>
-<th>SQL术语</th>
-<th>MongoDB术语/概念</th>
-<th>解释/说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>database</td>
-<td>database</td>
-<td>数据库</td>
-</tr>
-<tr>
-<td>table</td>
-<td>collection</td>
-<td>数据库表/集合</td>
-</tr>
-<tr>
-<td>row</td>
-<td>document</td>
-<td>数据记录行/文档</td>
-</tr>
-<tr>
-<td>column</td>
-<td>field</td>
-<td>数据字段/域</td>
-</tr>
-<tr>
-<td>index</td>
-<td>index</td>
-<td>索引</td>
-</tr>
-<tr>
-<td>table joins</td>
-<td></td>
-<td>表链接,MongoDB不支持</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>嵌入文档</td>
-</tr>
-<tr>
-<td>primary key</td>
-<td>primary key</td>
-<td>主键,MongoDB自动将_id字段设置为主键</td>
-</tr>
-</tbody></table>
-<a id="more"></a>
-
-<h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><ol>
-<li>配置数据库目录 mongod –dbpath=../data/db</li>
-<li>配置环境变量(mac) .bash_profile 中添加 export PATH=${PATH}:/usr/local/MongoDB/bin  source .bash_profile 立即生效</li>
-<li>配置相关信息</li>
-</ol>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>mongo –host=${ip地址}</td>
-<td>链接数据库</td>
-</tr>
-<tr>
-<td>show dbs</td>
-<td>展示数据库</td>
-</tr>
-<tr>
-<td>use ${dbname}</td>
-<td>创建或选择数据库,没有数据库则创建</td>
-</tr>
-<tr>
-<td>db.dropDatabase()</td>
-<td>删除当前数据库</td>
-</tr>
-<tr>
-<td>默认库admin</td>
-<td>‘root’数据库，要是将一个用户添加到这个库，这个用户自动继承所有数据库权限，一些特定的服务器命令只能从这个数据库运行，比如列出所有的数据库或关闭数据库</td>
-</tr>
-<tr>
-<td>默认库local</td>
-<td>这个数据永远不好被复制，可以用来存储限于本地单台服务器的任意集合</td>
-</tr>
-<tr>
-<td>默认库config</td>
-<td>当mongo用于分片设置时，config数据库在内部使用，用于保存分片的相关信息</td>
-</tr>
-<tr>
-<td>db</td>
-<td>数据库类 可以调用方法，用法类似类似js</td>
-</tr>
-<tr>
-<td>db.createCollection(‘${集合名称}’)</td>
-<td>创建集合</td>
-</tr>
-<tr>
-<td>show collections</td>
-<td>查看集合</td>
-</tr>
-<tr>
-<td>db.${集合名称}.drop()</td>
-<td>删除集合</td>
-</tr>
-<tr>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr>
-<td>插入数据</td>
-<td><code>db.$&#123;集合名称&#125;.insert(&#123;json格式数据&#125;)</code></td>
-</tr>
-<tr>
-<td>插入多条数据</td>
-<td><code>db.$&#123;集合名称&#125;.insertMany([&#123;&#125;,&#123;&#125;])</code></td>
-</tr>
-<tr>
-<td>查询集合数据</td>
-<td><code>db.$&#123;集合名称&#125;.find(&#123;查询条件&#125;)</code></td>
-</tr>
-<tr>
-<td>查询一条</td>
-<td><code>db.$&#123;集合名称&#125;.findOne(&#123;查询条件&#125;)</code></td>
-</tr>
-<tr>
-<td>查询部分字段</td>
-<td><code>db.$&#123;集合名称&#125;.find(&#123;查询条件&#125;,&#123;_id:0&#125;)</code>  // 0表示去除字段</td>
-</tr>
-<tr>
-<td>批量插入可以添加try</td>
-<td><code>try&#123;...&#125;catch(err)&#123;print(err)&#125;</code></td>
-</tr>
-<tr>
-<td>清空集合</td>
-<td><code>db.$&#123;集合名称&#125;.drop()</code></td>
-</tr>
-<tr>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr>
-<td>覆盖修改数据（覆盖更新,用新的数据替换原来的）</td>
-<td><code>db.$&#123;集合名称&#125;.update(&#123;查询条件&#125;,&#123;更新信息&#125;)</code></td>
-</tr>
-<tr>
-<td>局部修改</td>
-<td><code>db.$&#123;集合名称&#125;.update(&#123;查询条件&#125;,&#123;$set:&#123;更新信息&#125;&#125;)</code></td>
-</tr>
-<tr>
-<td>批量修改</td>
-<td><code>db.$&#123;集合名称&#125;.update(&#123;查询条件&#125;,&#123;$set:&#123;更新信息&#125;&#125;,&#123;multi:true&#125;)</code></td>
-</tr>
-<tr>
-<td>增加列</td>
-<td><code>db.$&#123;集合名称&#125;.update(&#123;查询条件&#125;,&#123;$inc:&#123;likenum:Number(1)&#125;&#125;)</code></td>
-</tr>
-<tr>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr>
-<td>删除文档</td>
-<td><code>db.$&#123;集合名称&#125;.remove(&#123;查询条件&#125;)</code> // 查询条件为空表示删除所有数据</td>
-</tr>
-<tr>
-<td>统计查询</td>
-<td><code>db.$&#123;集合名称&#125;.count(&#123;查询条件&#125;)</code> // 查询条件为空表示查询所有</td>
-</tr>
-<tr>
-<td>分页列表查询</td>
-<td><code>db.$&#123;集合名称&#125;.limit(2).skip(2)</code> // limit:查询条数 skip:第几条开始查</td>
-</tr>
-<tr>
-<td>排序查询</td>
-<td><code>db.$&#123;集合名称&#125;.find(&#123;查询条件&#125;).sort(&#123;id:1/-1,num:1/-1,...&#125;)</code> // shor 1:升序 -1降序</td>
-</tr>
-<tr>
-<td>正则复杂条件查询(js正则表达式)</td>
-<td><code>db.$&#123;集合名称&#125;.find(&#123;name:/.../&#125;)</code></td>
-</tr>
-<tr>
-<td>比较查询</td>
-<td><code>db.$&#123;集合名称&#125;.find(&#123;name:&#123;$gt:Number(100)&#125;&#125;)</code> // $gt 大于 $lt 小于 $gte大于等于 $lte 小于等于 $ne 不等于</td>
-</tr>
-<tr>
-<td>包含查询</td>
-<td><code>db.$&#123;集合名称&#125;.find(&#123;name:&#123;$in:[&quot; &quot;,&quot; &quot;]&#125;&#125;)</code></td>
-</tr>
-<tr>
-<td>条件链接查询</td>
-<td><code>db.$&#123;集合名称&#125;.find(&#123;$and:[&#123;num:&#123;$gt:Number(100)&#125;&#125;,&#123;num:&#123;$gt:Number(100)&#125;&#125;]&#125;)</code> // $and并且 $or或者</td>
-</tr>
-</tbody></table>
-
       
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/01/20/javaScript/node/" class="archive-article-date">
+  	<time datetime="2021-01-20T07:33:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-20</time>
+</a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/01/20/javaScript/node/">Node.js学习笔记</a>
+    </h1>
+  
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/12/29/MongoDB/" alt="微信分享二维码">
-    </div>
-</div>
+        <div class="article-info info-on-right">
+          
+          
 
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/12/29/linux%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/12/27/Docker/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Docker学习笔记</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MongoDB"><span class="toc-number">1.</span> <span class="toc-text">MongoDB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%92%8Cmysql%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.</span> <span class="toc-text">文档型数据库(和mysql对应关系)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="toc-number">1.2.</span> <span class="toc-text">安装配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">常用命令</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -515,7 +202,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 John Doe
+    		&copy; 2021 John Doe
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -528,8 +215,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
@@ -598,6 +285,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
@@ -607,10 +298,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jmeter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
             
             <div class="clearfix"></div>
