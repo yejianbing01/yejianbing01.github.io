@@ -83,237 +83,176 @@ docker 命令 --help          # 帮助命令
 
 ### 镜像命令
 
-docker images  查看本机上的docker镜像
-```sh
-docker images [OPTIONS] [REPOSITORY[:TAG]]
-Options:
-  -a, --all             Show all images 
-  -q, --quiet           Only show image IDs
-```
+* docker images【查看本机上的docker镜像】
+  ```
+  docker images [OPTIONS] [REPOSITORY[:TAG]]
+  Options:
+    -a, --all             Show all images 
+    -q, --quiet           Only show image IDs
+  ```
+* docker search【在docker仓库中搜索镜像】
+  ```
+  docker search [OPTIONS] TERM
+  Options:
+    -f, --filter filter   Filter output based 
+  ```
+* docker pull【下载镜像】
+  ```
+  docker pull [OPTIONS] NAME[:TAG|@DIGEST]
+  Options:
+    -a, --all-tags                Download all 
+    -q, --quiet                   Suppress verbose output
+  ```
 
-docker search 在docker仓库中搜索镜像
-```sh
-docker search [OPTIONS] TERM
-Options:
-  -f, --filter filter   Filter output based 
-```
+* docker rmi【删除镜像】
+  ```
+  docker rmi [OPTIONS] IMAGE [IMAGE...]
+  Options:
+    -f, --force      Force removal of the image
 
-docker pull 下载镜像
-```sh
-docker pull [OPTIONS] NAME[:TAG|@DIGEST]
-Options:
-  -a, --all-tags                Download all 
-  -q, --quiet                   Suppress verbose output
-```
-
-docker rmi 删除 镜像
-```sh
-docker rmi [OPTIONS] IMAGE [IMAGE...]
-Options:
-  -f, --force      Force removal of the image
-
-Exp:
-docker rmi -f $(docker images -aq)  # 删除所有镜像
-```
+  Exp:
+  docker rmi -f $(docker images -aq)  # 删除所有镜像
+  ```
+* docker commit【提交容器为新的镜像】【建议使用dockerFile构建镜像】
+  ```sh
+  docker commit -m="备注信息" -a="作者" 容器id github账号/容器名称:TAG
+  ```
+* docker build【使用dockerFile构建镜像】
+  ```sh
+  # 进入dockerFile同级目录执行命令,注意最后的 “.”表示dockerFile在当前目录
+  docker build -t github账号/容器名称:TAG .
+  ```
+* docker tag【设置镜像标签】
+  ```sh
+  docker tag [容器id/容器名称] [github账号/容器名称:TAG] 
+  ```
+* docker history【查看镜像创建记录】
+  ```sh
+  docker history 容器id
+  ```
+* docker login【登录docker仓库】
+* docker push【推送docker镜像到仓库】
+  ```sh
+  docker push [仓库地址]/仓库用户名/镜像名:TAG
+  ```
 
 ### 容器命令
 
-docker run 启动容器
-```sh
-docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
-Options:
-  --name="name"                 容器名称，用来区分容器
-  -d, --quiet                   后台方式运行，**启动后如果没有前台应用就会停止容器**
-  -it                           使用交互方式运行，进入容器查看内容
-  -p                            指定容器端口 1122:8080 主机端口号:容器端口号
+* docker run【启动容器 **重点** 】
+  ```
+  docker run [OPTIONS] IMAGE [执行的命令COMMAND] [参数...]
+  Options:
+    -d                            后台方式运行，**启动后如果没有前台应用就会停止容器**
+    -it                           i:使用交互方式运行 t:分配一个新终端
+    --name="name"                 容器名称，用来区分容器
+    -p                            指定容器端口 1122:8080 主机端口号:容器端口号
+    -P                            随机端口映射，容器内部暴露端口映射到宿主随机端口
+    -v [宿主机路径]:容器路径         挂载(绑定)一个卷，不带宿主机路径则为：匿名挂载
+    --dns 8.8.8.8                 指定容使用的DNS服务器，默认和宿主机一样
+    -e username="xxx"             设置环境变量
+    -m                            设置容器内存最大值
+    --link=[]                     链接到另外一个容器
+    --network="xxx"               加入到指定docker网络
 
-Exp:
-docker run -it centos /bin/bash
-```
+    Exp: docker run -it --name="myCentOS" -p 5555:5555 -v /etc/xxx:/etc/xxxx centos /bin/bash
+  ```
 
-docker rename 容器重命名
-```sh
-docker rename CONTAINER NEW_NAME
-```
+* docker ps【列出所有运行的容器】
+  ```
+  docker ps [-aq] # -a:列出所有运行过的容器  -q:只显示容器id 
+  ```
+* docker logs【获取容器的日志】
+  ```
+  docker logs [OPTIONS] CONTAINER
+  Options:
+    -f: 追踪日志输出
+    -n/--tail :显示多少条最新的日志
+    -t:显示时间戳
+  ```
+* docker port【列出指定容器的端口映射情况】
+  ```sh
+  docker port CONTAINER[/80] # 带端口表示查看指定端口映射情况
+  ```
+* docker top【查看容器内部的进程信息】
+  ```sh
+  docker top CONTAINER [ps OPTIONS]
+  ```
+* docker inspect【查看容器元数据】
+  ```sh
+  docker inspect [OPTIONS] NAME|ID [NAME|ID...]
+  Options:
+    -f:指定返回模板:go语音模板
+  ```
+* docker wait【阻塞进程直到容器停止，然后打印退出码】
+  ```sh
+  docker wait CONTAINER
+  ```
+* exit/Ctrl + P + Q【退出容器】
+  ```sh
+  exit                    退出并停止容器
+  Ctrl + P + Q            容器不停止退出
+  ```
+* docker rename【容器重命名】
+  ```sh
+  docker rename CONTAINER NEW_NAME
+  ```
+* docker update【更新容器】
+  ```
+  docker update [OPTIONS] CONTAINER [CONTAINER...]
+  Options:
+    -m, --memory bytes               Memory limit
+        --restart string             Restart policy to apply when a container exits
+  ```
+* docker exec/attach【进入正在运行的容器】
+  ```
+  docker exec [-it/d] CONTAINER COMMAND [ARG...]
+  docker attach CONTAINER # 进入当前正在运行的容器，进入正在执行的终端
 
-docker update 更新容器
-```sh
-docker update [OPTIONS] CONTAINER [CONTAINER...]
-Options:
-  -m, --memory bytes               Memory limit
-      --restart string             Restart policy to apply when a container exits
-```
+  Exp:
+    docker exec -it 9010942b00ff /bin/bash
+    docker attach 9010942b00ff
+  ```
 
-docker ps 列出所有运行的容器
-```sh
-docker ps [OPTIONS]
-Options:
-  -a, --all             列出所有运行过的容器
-  -n, --last int        列出最近创建的容器
-  -q, --quiet           只显示容器id
-  -s, --size            Display total file sizes
-```
+* docker start/restart/stop/kill/rm【启动/重启/停止/强制停止/删除 容器】
+  ```
+  docker start 容器id                     启动容器
+  docker restart 容器id                   重启容器
+  docker stop 容器id                      停止当前运行的容器
+  docker kill 容器id                      强制停止当前运行的容器
+  docker rm [-f]                         删除容器 -f:强制删除
+  ```
+* docker cp【容器和宿主机之间文件复制】
+  ```
+  # 将主机/www/runoob目录拷贝到容器96f7f14e99ab的/www目录下。
+  docker cp /www/runoob 96f7f14e99ab:/www/
 
-exit 退出容器
-```sh
-exit                    退出并停止容器
-Ctrl + P + Q            容器不停止退出
-```
+  # 将主机/www/runoob目录拷贝到容器96f7f14e99ab中，目录重命名为www。
+  docker cp /www/runoob 96f7f14e99ab:/www
 
-docker rm 删除容器
-```sh
-docker rm [OPTIONS] CONTAINER [CONTAINER...]
-Options:
-  -f, --force     强制删除
+  # 将容器96f7f14e99ab的/www目录拷贝到主机的/tmp目录中。
+  docker cp  96f7f14e99ab:/www /tmp/
+  ```
+* **使用数据卷/具名挂载和匿名挂载**
+  ```
+  docker run -it -v 主机目录:容器目录
 
-Exp:
-docker rm -f $(docker ps -aq)   删除所有容器
-```
+  # 容器停止后主机修改了挂载目录的数据，容器内的数据也会同步。
 
-启动和停止容器
-```sh
-docker start 容器id                     启动容器
-docker restart 容器id                   重启容器
-docker stop 容器id                      停止当前运行的容器
-docker kill 容器id                      强制停止当前运行的容器
-```
+  docker run -d -P --name nginx01 -v /etc/nginx nginx
 
-docker logs
-```sh
-docker logs [OPTIONS] CONTAINER
-Options:
-  -f, --follow         Follow log output
-  -n, --tail string    Number of lines to show from the end of the logs
-                       (default "all")
-  -t, --timestamps     Show timestamps
-```
+  # 查看所有的volume情况
+  docker volume
 
-docker top 查看容器内部的进程信息
-```sh
-docker top CONTAINER [ps OPTIONS]
-```
-
-docker inspect 查看容器元数据
-```sh
-docker inspect [OPTIONS] NAME|ID [NAME|ID...]
-Options:
-  -f, --format string   Format the output using the given Go template
-  -s, --size            Display total file sizes if the type is container
-```
-
-**docker exec** 进入当前正在运行的容器,开启新的终端
-```sh
-docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
-Options:
-  -d, --detach               Detached mode: run command 
-  -e, --env list             Set environment variables
-  -i, --interactive          Keep STDIN open even if not attached
-  -t, --tty                  Allocate a pseudo-TTY
-
-Exp:
-docker exec -it 9010942b00ff /bin/bash
-```
-
-**docker attach** 进入当前正在运行的容器，进入正在执行的终端
-```sh
- docker attach [OPTIONS] CONTAINER
-```
-
-docker cp 容器文件复制
-```sh
-docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|-
-docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH
-
-```
-
-### 练习： 部署 ES + kibana
-
-```sh
-# es十分消耗内存
-docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:tag
-
-# 增加内存限制，修改配置文件 -e 环境配置修改
-docker run -d --name elasticsearch  -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node"  -e ES_JAVA_OPTS="-xms64m -Xmx512m" elasticsearch:tag
-
-# docker stats 查看docker机器状态
-```
-
-## docker镜像
----
-
-### commit镜像
-```sh
-docker commit 提交容器成为一个新的版本
-
-# 命令和git原理类似
-docker  commit -m="提交的描述信息" -a="作者" 容器id 目标镜像名:[TAG]
-```
-
-## 容器数据卷
----
-将容器内的文件，挂载到宿主机上，实现容器的持久化和同步操作，容器间也可以数据共享
-
-### 使用数据卷
-> 方法一：直接使用命令挂载 -v
-```sh
-docker run -it -v 主机目录:容器目录
-
-# 容器停止后主机修改了挂载目录的数据，容器内的数据也会同步。
-```
-
-### 安装MySQL
-```sh
-docker pull mysql:5.7
-
-docker run -d -p 3306:3306 -v E:\docker\mysq\confl:/etc/mysql/conf.d -v E:\docker\mysql\data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql:5.7
-
-# -v 目录挂载 主机目录:容器目录
-# -e 环境配置 mysql root用户密码
-```
-
-### 安装mongoDB
-```sh
-docker pull mongo
-
-docker run --name mongodb -p 27017:27017 -v mongo:/data/db -d mongo --auth
-
-# --auth 开启权限认证
-# -v mongo:/data/db 具名挂载
-
-```
-### 安装jenkins
-```sh
-docker run -it --name jenkins -e TZ=Asia/Shanghai \
-	-p 8080:8080 -p 50000:50000 \
-	-v ~/mnt/jenkins/jenkins_home:/var/jenkins_home \
-	jenkins/jenkins
-```
-
-### 具名挂载和匿名挂载
-- 匿名挂载
-    ```sh
-    # -v 容器内路径
-    docker run -d -P --name nginx01 -v /etc/nginx nginx
-
-    # 查看所有的volume情况
-    docker volume
-
-    docker volume COMMAND
-    Commands:
-    create      Create a volume
-    inspect     Display detailed information on one or more volumes
-    ls          List volumes
-    prune       Remove all unused local volumes
-    rm          Remove one or more volumes
+  docker volume COMMAND
+  Commands:
+  create      Create a volume
+  inspect     Display detailed information on one or more volumes
+  ls          List volumes
+  prune       Remove all unused local volumes
+  rm          Remove one or more volumes
+  ```
+* 拓展
     ```
-
-- 具名挂载
-    ```sh
-     -v 卷名:容器内路径
-    ```
-
-- 拓展
-    ```sh
     docker run -d -P --name nginx01 -v test-nginx:/etc/nginx:ro nginx
 
     docker run -d -P --name nginx01 -v test-nginx:/etc/nginx:ro nginx
@@ -321,15 +260,95 @@ docker run -it --name jenkins -e TZ=Asia/Shanghai \
     ro    readonly  # 只读
     rw    readwrite # 可读可写
     ```
+### 容器实例
 
-> 方式二：Dockerfile
+* 部署 ES + kibana
+  ```
+  # es十分消耗内存
+  docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:tag
 
+  # 增加内存限制，修改配置文件 -e 环境配置修改
+  docker run -d --name elasticsearch  -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node"  -e ES_JAVA_OPTS="-xms64m -Xmx512m" elasticsearch:tag
+
+  # docker stats 查看docker机器状态
+  ```
+* 部署 MySql
+  ```
+  docker pull mysql:5.7
+
+  docker run -d -p 3306:3306 -v E:\docker\mysq\confl:/etc/mysql/conf.d -v E:\docker\mysql\data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql:5.7
+
+  # -v 目录挂载 主机目录:容器目录
+  # -e 环境配置 mysql root用户密码
+  ```
+* 安装mongoDB
+  ```sh
+  docker pull mongo
+
+  docker run --name mongodb -p 27017:27017 -v mongo:/data/db -d mongo --auth
+
+  # --auth 开启权限认证
+  # -v mongo:/data/db 具名挂载
+  ```
 
 ## DockerFile
----
+![alt](/images/dockerFile.png)
+* 栗子【Dockerfile 是一个用来构建镜像的文本文件，文本内容包含了一条条构建镜像所需的指令和说明。】
+  ```sh
+  # This my first nginx Dockerfile
+  # Version 1.0
+
+  # Base images 基础镜像
+  FROM centos
+
+  #MAINTAINER 维护者信息
+  MAINTAINER tianfeiyu 
+
+  #ENV 设置环境变量
+  ENV PATH /usr/local/nginx/sbin:$PATH
+
+  #ADD  文件放在当前目录下，拷过去会自动解压
+  ADD nginx-1.8.0.tar.gz /usr/local/  
+  ADD epel-release-latest-7.noarch.rpm /usr/local/  
+
+  #RUN 执行以下命令 
+  RUN rpm -ivh /usr/local/epel-release-latest-7.noarch.rpm
+  RUN yum install -y wget lftp gcc gcc-c++ make openssl-devel pcre-devel pcre && yum clean all
+  RUN useradd -s /sbin/nologin -M www
+
+  #WORKDIR 相当于cd
+  WORKDIR /usr/local/nginx-1.8.0 
+
+  RUN ./configure --prefix=/usr/local/nginx --user=www --group=www --with-http_ssl_module --with-pcre && make && make install
+
+  RUN echo "daemon off;" >> /etc/nginx.conf
+
+  #EXPOSE 映射端口
+  EXPOSE 80
+
+  #CMD 运行以下命令
+  CMD ["nginx"]
+  ```
+  ```sh
+  FROM：指定基础镜像，必须为第一个命令
+  MAINTAINER: 维护者信息
+  RUN：构建镜像时执行的命令
+  ADD：将本地文件添加到容器中，tar类型文件会自动解压(网络压缩资源不会被解压)，可以访问网络资源，类似wget
+  COPY：功能类似ADD，但是是不会自动解压文件，也不能访问网络资源
+  ENTRYPOINT：配置容器，使其可执行化。配合CMD可省去"application"，只使用参数。
+  CMD：构建容器后调用，也就是在容器启动时才进行调用。
+  LABEL：用于为镜像添加元数据
+  ENV：设置环境变量
+  EXPOSE：指定于外界交互的端口
+  VOLUME：用于指定持久化目录
+  WORKDIR：工作目录，类似于cd命令
+  USER:指定运行容器时的用户名或 UID，后续的 RUN 也会使用指定用户。使用USER指定用户时，可以使用用户名、UID或GID，或是两者的组合。当服务不需要管理员权限时，可以通过该命令指定运行用户。并且可以在之前创建所需要的用户
+  ARG：用于指定传递给构建运行时的变量
+  ONBUILD：用于设置镜像触发器
+  ```
 
 ## Docker 网络
----
+
 
 ## Docker Compose
 

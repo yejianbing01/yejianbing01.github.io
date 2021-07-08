@@ -1,23 +1,45 @@
 # MongoDB
 
-## 文档型数据库(和mysql对应关系)
-SQL术语|MongoDB术语/概念|解释/说明
----|---|---
-database|database|数据库
-table|collection|数据库表/集合
-row|document|数据记录行/文档
-column|field|数据字段/域
-index|index|索引
-table joins| | 表链接,MongoDB不支持
-||嵌入文档|MongoDB通过嵌入式文档来替代多表链接
-primary key|primary key | 主键,MongoDB自动将_id字段设置为主键
-
-<!-- more -->
-
 ## 安装配置
 1. 配置数据库目录 mongod --dbpath=../data/db
+
 2. 配置环境变量(mac) .bash_profile 中添加 export PATH=${PATH}:/usr/local/MongoDB/bin  source .bash_profile 立即生效
+
 3. 配置相关信息
+
+4. docker安装
+
+   ```sh
+   docker pull mongo
+   
+   docker run --name mongodb -p 27017:27017 -v mongo:/data/db -d mongo --auth
+   ```
+<!-- more -->
+## 配置启动
+
+```sh
+mongod -f mongodb.conf
+```
+
+mongodb.conf 配置文件内容：
+
+```sh
+# 数据文件存放位置
+dbpath = /usr/local/mongodb/data/db
+# 日志存放目录
+logpath = /usr/local/mongodb/logs/mongodb.log
+# 以追加的方式记录日志
+logappend = true
+# 端口默认为27017
+port = 27017
+# 对访问 IP 地址不做限制，默认本机地址
+bind_ip = 0.0.0.0
+# 已守护进程的方式启用，即在后台运行
+fork = true
+#  开启认证模式
+auth = true   
+```
+
 
 ## 数据类型
 类型        |类型值|  类型                        |类型值
@@ -39,7 +61,8 @@ Min key     | 255|  Max key                     | 127
 命令|解释
 ---|---
 mongo --host=${ip地址}|链接数据库
-show dbs|展示数据库|
+db.auth("userName", "")|身份认证
+show dbs|展示数据库
 use ${dbname}|创建或选择数据库,没有数据库则创建
 db.dropDatabase()| 删除当前数据库
 默认库admin|'root'数据库，要是将一个用户添加到这个库，这个用户自动继承所有数据库权限，一些特定的服务器命令只能从这个数据库运行，比如列出所有的数据库或关闭数据库
@@ -47,11 +70,20 @@ db.dropDatabase()| 删除当前数据库
 默认库config|当mongo用于分片设置时，config数据库在内部使用，用于保存分片的相关信息
 
 ### 用户权限操作
-命令|解释
----|---
+| 角色         | 解释                                                   |
+| ------------ | ------------------------------------------------------ |
+| 用户管理权限 | userAdmin, userAdminAnyDatabase                        |
+| 数据库权限   | read, readWrite, readAnyDatabase, readWriteAnyDatabase |
+| 管理权限     | dbAdmin, dbAdminAnyDatabase                            |
 
+>  创建用户: userAdminAnyDatabase, readAnyDatabase, readWriteAnyDatabase,  dbAdminAnyDatabase只在admin库有效
+
+```sh
+db.createUser({user:"myUserAdmin",pwd:"abc123",roles:[{role:"userAdminAnyDatabase",db:"admin"}]})
+```
 
 ### 集合操作
+
 命令|解释
 ---|---
 db|数据库类 可以调用方法，用法类似类似js
